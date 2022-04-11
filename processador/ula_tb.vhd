@@ -35,7 +35,7 @@ architecture a_ula_tb of ula_tb is
 				-- ** 1 se houve resultado positivo ao se diminuir um número negativo (underflow)
 				-- ** 0 caso contrário
 				-- * em uma operação de deslocamento (rotação não):
-				-- ** 1 se um bit diferente do bit de sinal foi deslocado para fora do operando no caso de deslocamento para a esquerda
+				-- ** 1 se um bit diferente do bit de sinal do resultado foi deslocado para fora do operando no caso de deslocamento para a esquerda
 				-- ** 1 se um bit diferente de zero foi deslocado para fora do operando no caso de deslocamento para a direita
 				-- ** 0 caso contrário
 				-- * a flag é zerada se outra operação estiver sendo realizada
