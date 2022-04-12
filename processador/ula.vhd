@@ -62,16 +62,31 @@ begin
 				input_a(15 - to_integer(input_b(3 downto 0)) downto 0) & input_a(15 downto 16 - to_integer(input_b(3 downto 0))) when operation_selection="111" else
 				"0000000000000000";
 	
-	carry_flag   	<=	'1' when input_a(15) and input_b(15) and operation_selection="000" else
-						'1' when ula_out/="0000000000000000" else
+	carry_flag   	<=	'1' when input_a(15)='1' and input_b(15)='1' and operation_selection="000" else
+						'1' when input_a(15)='1' and ula_out(15)='0' and operation_selection="000" else
+						'1' when input_a(15)='0' and ula_out(15)='1' and operation_selection="001" else
+						'1' when shift_amount/="0000" and input_a(15 - (to_integer(shift_amount) - 1))='1' and input_b<16 and operation_selection="101" else
+						'1' when shift_amount/="0000" and input_a(to_integer(shift_amount) - 1)='1' and input_b<16 and operation_selection="110" else
+						'1' when shift_amount/="0000" and input_a(15)='1' and input_b>15 and operation_selection="110" else
+						'1' when shift_amount/="0000" and input_a(15 - (to_integer(shift_amount) - 1))='1' and operation_selection="111" else
 						'0';
 				
-	zero_flag   	<=	'0' when ula_out="0000000000000000" else
-						'1' when ula_out/="0000000000000000" else
+	zero_flag   	<=	'1' when ula_out="0000000000000000" else
 						'0';
 	
-	negative_flag   <=	'0' when ula_out(15)='0' else
-						'1' when ula_out(15)='1' else
+	negative_flag   <=	'1' when ula_out(15)='1' else
+						'0';
+	
+	overflow_flag	<=	'1' when ula_out(15)='1' and input_a(15)='0' and input_b(15)='0' and operation_selection="000" else
+						'1' when ula_out(15)='0' and input_a(15)='1' and input_b(15)='1' and operation_selection="000" else
+						'1' when ula_out(15)='0' and input_b(15)='1' and operation_selection="001" else
+						'1' when ula_out(15)='0' and input_a(15)='1' and input_b(15)='0' and operation_selection="001" else
+						'1' when ula_out(15)='1' and input_a(15)='0' and input_b(15)='1' and operation_selection="001" else
+						'1' when shift_amount/="0000" and input_a(15)='0' and input_a(15 downto (15 - (to_integer(shift_amount) - 1)))/=zero((15 - (to_integer(shift_amount) - 1)) downto 0) and input_b<16 and operation_selection="101" else
+						'1' when shift_amount/="0000" and input_a(15)/=ula_out(15) and input_b<16 and operation_selection="101" else
+						'1' when shift_amount/="0000" and input_a/=zero and input_b>15 and operation_selection="101" else
+						'1' when shift_amount/="0000" and input_a(15)='1' and input_a(15 downto (15 - (to_integer(shift_amount) - 1)))/=ones(15 - (to_integer(shift_amount) - 1) downto 0) and input_b<16 and operation_selection="101" else
+						'1' when shift_amount/="0000" and input_a((to_integer(shift_amount) - 1) downto 0)/=zero((to_integer(shift_amount) - 1) downto 0) and input_b<16 and operation_selection="110" else
 						'0';
 					
 	output <= 	ula_out;
