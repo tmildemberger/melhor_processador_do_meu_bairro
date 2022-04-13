@@ -33,7 +33,8 @@ entity ula is
 			-- ** 0 caso contrário
 			-- * em uma operação de deslocamento (rotação não):
 			-- ** 1 se um bit diferente do bit de sinal do resultado foi deslocado para fora do operando no caso de deslocamento para a esquerda
-			-- ** 1 se um bit diferente de zero foi deslocado para fora do operando no caso de deslocamento para a direita
+			--		(ou em outras palavras, caso a entrada inicial não possa ser recuperada por meio de um deslocamento para a direita)
+			-- ** 1 no caso de deslocamento para a direita se a entrada inicial não pode ser recuperada por meio de um deslocamento para a esquerda
 			-- ** 0 caso contrário
 			-- * a flag é zerada se outra operação estiver sendo realizada
 			-- assim, é possível observar que essa flag não sinaliza somente uma inconsistência de sinal,

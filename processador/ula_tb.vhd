@@ -36,7 +36,8 @@ architecture a_ula_tb of ula_tb is
 				-- ** 0 caso contrário
 				-- * em uma operação de deslocamento (rotação não):
 				-- ** 1 se um bit diferente do bit de sinal do resultado foi deslocado para fora do operando no caso de deslocamento para a esquerda
-				-- ** 1 se um bit diferente de zero foi deslocado para fora do operando no caso de deslocamento para a direita
+				--		(ou em outras palavras, caso a entrada inicial não possa ser recuperada por meio de um deslocamento para a direita)
+				-- ** 1 no caso de deslocamento para a direita se a entrada inicial não pode ser recuperada por meio de um deslocamento para a esquerda
 				-- ** 0 caso contrário
 				-- * a flag é zerada se outra operação estiver sendo realizada
 				-- assim, é possível observar que essa flag não sinaliza somente uma inconsistência de sinal,
@@ -171,6 +172,12 @@ begin
 						-- deve resultar em 0xaf80 										com flags C=0, Z=0, N=1, V=1
 						-- objetivo: testar perda de um bit 1 sem carry, ainda causando overflow
 		input_a <= "0000010101011111";
+		input_b <= "0000000000010000";
+		operation_selection <= "101";
+		wait for 50 ns;	-- testa operação deslocamento lógico para a esquerda (OP=5) entre 0x055f e 0x0010
+						-- deve resultar em 0x0000 										com flags C=1, Z=1, N=0, V=1
+						-- objetivo: testar perda da palavra toda, causando overflow, mas com carry pois o último bit perdido foi 1
+		input_a <= "0000010101011111";
 		input_b <= "1101101011010000";
 		operation_selection <= "101";
 		wait for 50 ns;	-- testa operação deslocamento lógico para a esquerda (OP=5) entre 0x055f e 0xdad0
@@ -212,18 +219,36 @@ begin
 		operation_selection <= "110";
 		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xffff e 0x0005
 						-- deve resultar em 0xffff 										com flags C=1, Z=0, N=1, V=0
-						-- objetivo: será que aqui deveria ter overflow ou não?????????????????
+						-- objetivo: sem overflow pois o resultado da operação é igual à entrada
 		input_a <= "1111111100000000";
 		input_b <= "0000000000000100";
 		operation_selection <= "110";
 		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xff00 e 0x0004
 						-- deve resultar em 0xfff0 										com flags C=0, Z=0, N=1, V=0
-						-- objetivo: testar o deslocamento preenchendo o resultado com bits 1, perdendo somente zeros
+						-- objetivo: sem overflow pois pode ser revertido com deslocamento à esquerda de 4 bits
+		input_a <= "1111111100000000";
+		input_b <= "0000000000001100";
+		operation_selection <= "110";
+		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xff00 e 0x000C
+						-- deve resultar em 0xffff 										com flags C=0, Z=0, N=1, V=0
+						-- objetivo: sem overflow pois pode ser revertido com deslocamento à esquerda de 8 bits (com input_b<16)
 		input_a <= "1111111100000000";
 		input_b <= "1101101011010000";
 		operation_selection <= "110";
 		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xff00 e 0xdad0
-						-- deve resultar em 0xffff 										com flags C=1, Z=0, N=1, V=1
+						-- deve resultar em 0xffff 										com flags C=1, Z=0, N=1, V=0
+						-- objetivo: sem overflow pois pode ser revertido com deslocamento à esquerda de 8 bits (com input_b>=16)
+		input_a <= "0000000000000000";
+		input_b <= "1101101011010000";
+		operation_selection <= "110";
+		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0x0000 e 0xdad0
+						-- deve resultar em 0x0000 										com flags C=0, Z=1, N=0, V=0
+						-- objetivo: sem overflow pois o primeiro operando é zero
+		input_a <= "1010101111001101";
+		input_b <= "1101101011010000";
+		operation_selection <= "110";
+		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xabcd e 0xdad0
+						-- deve resultar em 0xffff 										com flags C=0, Z=0, N=0, V=1
 						-- objetivo: testar perda completa da palavra negativa
 		input_a <= "0000111100000000";
 		input_b <= "1101101011010000";
@@ -238,24 +263,30 @@ begin
 						-- deve resultar em 0x0f00 										com flags C=0, Z=0, N=0, V=0
 						-- objetivo: testar segundo operando igual a zero
 		--------------fim dos testes do deslocamento aritmético para a direita------------
-		input_a <= "0001001000110100";
+		input_a <= "1001011101010011";
 		input_b <= "0000000000000100";
 		operation_selection <= "111";
-		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x1234 e 0x0004
-						-- deve resultar em 0x2341 										com flags C=1, Z=0, N=0, V=0
+		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x9753 e 0x0004
+						-- deve resultar em 0x7539 										com flags C=1, Z=0, N=0, V=0
 						-- objetivo: testar rotação em geral e flag carry
-		input_a <= "0001001000110100";
+		input_a <= "1001011101010011";
 		input_b <= "1111000000000100";
 		operation_selection <= "111";
-		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x1234 e 0xf004
-						-- deve resultar em 0x2341 										com flags C=1, Z=0, N=0, V=0
-						-- objetivo: testar rotação com segundo operando maior que 15
-		input_a <= "0001001000110100";
+		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x9753 e 0xf004
+						-- deve resultar em 0x7539 										com flags C=1, Z=0, N=0, V=0
+						-- objetivo: testar rotação com segundo operando maior que 16
+		input_a <= "1001011101010011";
 		input_b <= "0000000000000000";
 		operation_selection <= "111";
-		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x1234 e 0x0000
-						-- deve resultar em 0x1234 										com flags C=0, Z=0, N=0, V=0
+		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x9753 e 0x0000
+						-- deve resultar em 0x9753 										com flags C=0, Z=0, N=1, V=0
 						-- objetivo: testar segundo operando igual a zero
+		input_a <= "1001011101010011";
+		input_b <= "0000000000010000";
+		operation_selection <= "111";
+		wait for 50 ns;	-- testa operação rotação para a esquerda (OP=7) entre 0x9753 e 0x0010
+						-- deve resultar em 0x9753 										com flags C=1, Z=0, N=1, V=0
+						-- objetivo: testar segundo operando igual a 16
 		---------------------fim dos testes da rotação para a esquerda--------------------
 		wait;
 	end process;
