@@ -230,7 +230,7 @@ begin
 		input_b <= "0000000000001100";
 		operation_selection <= "110";
 		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xff00 e 0x000C
-						-- deve resultar em 0xffff 										com flags C=0, Z=0, N=1, V=0
+						-- deve resultar em 0xffff 										com flags C=1, Z=0, N=1, V=0
 						-- objetivo: sem overflow pois pode ser revertido com deslocamento à esquerda de 8 bits (com input_b<16)
 		input_a <= "1111111100000000";
 		input_b <= "1101101011010000";
@@ -248,7 +248,7 @@ begin
 		input_b <= "1101101011010000";
 		operation_selection <= "110";
 		wait for 50 ns;	-- testa operação deslocamento aritmético para a direita (OP=6) entre 0xabcd e 0xdad0
-						-- deve resultar em 0xffff 										com flags C=0, Z=0, N=0, V=1
+						-- deve resultar em 0xffff 										com flags C=1, Z=0, N=1, V=1
 						-- objetivo: testar perda completa da palavra negativa
 		input_a <= "0000111100000000";
 		input_b <= "1101101011010000";
