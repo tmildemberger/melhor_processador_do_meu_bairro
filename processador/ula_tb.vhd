@@ -44,9 +44,9 @@ architecture a_ula_tb of ula_tb is
 				-- mas de forma mais geral avisa sobre uma possível possível perda não intencional de informação na operação
 		);
 	end component;
-	signal input_a, input_b, output								: unsigned(15 downto 0);
-	signal operation_selection									: unsigned(2 downto 0);
-	signal carry_flag, zero_flag, negative_flag, overflow_flag	: std_logic;
+	signal input_a, input_b, output								: unsigned(15 downto 0)	:= (others => '0');
+	signal operation_selection									: unsigned(2 downto 0)	:= (others => '0');
+	signal carry_flag, zero_flag, negative_flag, overflow_flag	: std_logic				:= '0';
 begin
 	uut: ula port map( 	input_a 			=> input_a,
 						input_b 			=> input_b,

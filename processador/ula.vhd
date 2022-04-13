@@ -43,14 +43,15 @@ entity ula is
 end entity;
 
 architecture a_ula of ula is
-	signal ula_out: unsigned(15 downto 0);
-	signal zero : unsigned(15 downto 0);
-	signal ones : unsigned(15 downto 0);
-	signal shift_amount : unsigned(3 downto 0);
+	signal ula_out 			: unsigned(15 downto 0)	:= (others => '0');
+	signal zero 			: unsigned(15 downto 0)	:= "0000000000000000";
+	signal ones 			: unsigned(15 downto 0)	:= "1111111111111111";
+	signal shift_amount 	: unsigned(4 downto 0)	:= (others => '0');
+	signal soma_a_b 		: unsigned(16 downto 0)	:= (others => '0');
+	signal shift_left_a_b 	: unsigned(31 downto 0)	:= (others => '0');
+	signal shift_right_a_b 	: unsigned(31 downto 0)	:= (others => '0');
+	signal rotate_a_b 		: unsigned(15 downto 0)	:= (others => '0');
 begin
-	zero   <= 	"0000000000000000";
-	ones   <= 	"1111111111111111";
-	shift_amount <= input_b(3 downto 0);
 	ula_out <= 	input_a + input_b when operation_selection="000" else
 				input_a - input_b when operation_selection="001" else
 				input_a(15 downto 0) and input_b(15 downto 0) when operation_selection="010" else
@@ -70,6 +71,22 @@ begin
 						'1' when shift_amount/="0000" and input_a(to_integer(shift_amount) - 1)='1' and input_b<16 and operation_selection="110" else
 						'1' when shift_amount/="0000" and input_a(15)='1' and input_b>15 and operation_selection="110" else
 						'1' when shift_amount/="0000" and input_a(15 - (to_integer(shift_amount) - 1))='1' and operation_selection="111" else
+	shift_amount 	<= 	'0' & input_b(3 downto 0) when input_b/=16 else
+						"10000" when input_b=16 else
+						"00000";
+	
+	soma_a_b		<=	('0' & input_a) + ('0' & input_b);
+	
+	shift_left_a_b	<=	zero(15 - to_integer(shift_amount) downto 0) & input_a(15 downto 0) & zero(to_integer(shift_amount)-1 downto 0) when input_b <= 16 else
+						"00000000000000000000000000000000";
+	
+	shift_right_a_b	<=	zero(to_integer(shift_amount)-1 downto 0) & input_a(15 downto 0) & zero(15 - to_integer(shift_amount) downto 0) when input_b <= 16 and input_a(15)='0' else
+						ones(to_integer(shift_amount)-1 downto 0) & input_a(15 downto 0) & zero(15 - to_integer(shift_amount) downto 0) when input_b <= 16 and input_a(15)='1' else
+						"11111111111111111111111111111111" when input_b>16 and input_a(15)='1' else
+						"00000000000000000000000000000000";
+	
+	rotate_a_b		<=	input_a(15 - to_integer(shift_amount) downto 0) & input_a(15 downto 16 - to_integer(shift_amount));
+	
 						'0';
 				
 	zero_flag   	<=	'1' when ula_out="0000000000000000" else
@@ -90,5 +107,5 @@ begin
 						'1' when shift_amount/="0000" and input_a((to_integer(shift_amount) - 1) downto 0)/=zero((to_integer(shift_amount) - 1) downto 0) and input_b<16 and operation_selection="110" else
 						'0';
 					
-	output <= 	ula_out;
+	output 			<= 	ula_out;
 end architecture;
