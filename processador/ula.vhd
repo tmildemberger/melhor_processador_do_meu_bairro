@@ -52,17 +52,6 @@ architecture a_ula of ula is
 	signal shift_right_a_b 	: unsigned(31 downto 0)	:= (others => '0');
 	signal rotate_a_b 		: unsigned(15 downto 0)	:= (others => '0');
 begin
-	ula_out <= 	input_a + input_b when operation_selection="000" else
-				input_a - input_b when operation_selection="001" else
-				input_a(15 downto 0) and input_b(15 downto 0) when operation_selection="010" else
-				input_a(15 downto 0) or input_b(15 downto 0) when operation_selection="011" else
-				input_a(15 downto 0) xor input_b(15 downto 0) when operation_selection="100" else
-				input_a((15 - to_integer(input_b(3 downto 0))) downto 0) & zero(to_integer(input_b(3 downto 0))-1 downto 0) when operation_selection="101" and input_b <= 15 else
-				zero(to_integer(input_b(3 downto 0))-1 downto 0) & input_a(15 downto to_integer(input_b(3 downto 0))) when operation_selection="110" and input_b <= 15 and input_a(15)='0' else
-				ones(to_integer(input_b(3 downto 0))-1 downto 0) & input_a(15 downto to_integer(input_b(3 downto 0))) when operation_selection="110" and input_b <= 15 and input_a(15)='1' else
-				"1111111111111111" when operation_selection="110" and input_b >= 16 and input_a(15)='1' else
-				input_a(15 - to_integer(input_b(3 downto 0)) downto 0) & input_a(15 downto 16 - to_integer(input_b(3 downto 0))) when operation_selection="111" else
-				"0000000000000000";
 	
 	carry_flag   	<=	'1' when input_a(15)='1' and input_b(15)='1' and operation_selection="000" else
 						'1' when input_a(15)='1' and ula_out(15)='0' and operation_selection="000" else
@@ -87,6 +76,15 @@ begin
 	
 	rotate_a_b		<=	input_a(15 - to_integer(shift_amount) downto 0) & input_a(15 downto 16 - to_integer(shift_amount));
 	
+	ula_out 		<= 	soma_a_b(15 downto 0) when operation_selection="000" else
+						input_a - input_b when operation_selection="001" else
+						input_a(15 downto 0) and input_b(15 downto 0) when operation_selection="010" else
+						input_a(15 downto 0) or input_b(15 downto 0) when operation_selection="011" else
+						input_a(15 downto 0) xor input_b(15 downto 0) when operation_selection="100" else
+						shift_left_a_b(15 downto 0) when operation_selection="101" else
+						shift_right_a_b(31 downto 16) when operation_selection="110" else
+						rotate_a_b when operation_selection="111" else
+						"0000000000000000";
 						'0';
 				
 	zero_flag   	<=	'1' when ula_out="0000000000000000" else
