@@ -53,13 +53,6 @@ architecture a_ula of ula is
 	signal rotate_a_b 		: unsigned(15 downto 0)	:= (others => '0');
 begin
 	
-	carry_flag   	<=	'1' when input_a(15)='1' and input_b(15)='1' and operation_selection="000" else
-						'1' when input_a(15)='1' and ula_out(15)='0' and operation_selection="000" else
-						'1' when input_a(15)='0' and ula_out(15)='1' and operation_selection="001" else
-						'1' when shift_amount/="0000" and input_a(15 - (to_integer(shift_amount) - 1))='1' and input_b<16 and operation_selection="101" else
-						'1' when shift_amount/="0000" and input_a(to_integer(shift_amount) - 1)='1' and input_b<16 and operation_selection="110" else
-						'1' when shift_amount/="0000" and input_a(15)='1' and input_b>15 and operation_selection="110" else
-						'1' when shift_amount/="0000" and input_a(15 - (to_integer(shift_amount) - 1))='1' and operation_selection="111" else
 	shift_amount 	<= 	'0' & input_b(3 downto 0) when input_b/=16 else
 						"10000" when input_b=16 else
 						"00000";
@@ -85,6 +78,12 @@ begin
 						shift_right_a_b(31 downto 16) when operation_selection="110" else
 						rotate_a_b when operation_selection="111" else
 						"0000000000000000";
+	
+	carry_flag   	<=	'1' when soma_a_b(16)='1' and operation_selection="000" else
+						'1' when input_a < input_b and operation_selection="001" else
+						'1' when shift_left_a_b(16)='1' and operation_selection="101" else
+						'1' when shift_right_a_b(15)='1' and operation_selection="110" else
+						'1' when rotate_a_b(0)='1' and shift_amount/=0 and operation_selection="111" else
 						'0';
 				
 	zero_flag   	<=	'1' when ula_out="0000000000000000" else
@@ -93,16 +92,12 @@ begin
 	negative_flag   <=	'1' when ula_out(15)='1' else
 						'0';
 	
-	overflow_flag	<=	'1' when ula_out(15)='1' and input_a(15)='0' and input_b(15)='0' and operation_selection="000" else
-						'1' when ula_out(15)='0' and input_a(15)='1' and input_b(15)='1' and operation_selection="000" else
-						'1' when ula_out(15)='0' and input_b(15)='1' and operation_selection="001" else
-						'1' when ula_out(15)='0' and input_a(15)='1' and input_b(15)='0' and operation_selection="001" else
-						'1' when ula_out(15)='1' and input_a(15)='0' and input_b(15)='1' and operation_selection="001" else
-						'1' when shift_amount/="0000" and input_a(15)='0' and input_a(15 downto (15 - (to_integer(shift_amount) - 1)))/=zero((15 - (to_integer(shift_amount) - 1)) downto 0) and input_b<16 and operation_selection="101" else
-						'1' when shift_amount/="0000" and input_a(15)/=ula_out(15) and input_b<16 and operation_selection="101" else
-						'1' when shift_amount/="0000" and input_a/=zero and input_b>15 and operation_selection="101" else
-						'1' when shift_amount/="0000" and input_a(15)='1' and input_a(15 downto (15 - (to_integer(shift_amount) - 1)))/=ones(15 - (to_integer(shift_amount) - 1) downto 0) and input_b<16 and operation_selection="101" else
-						'1' when shift_amount/="0000" and input_a((to_integer(shift_amount) - 1) downto 0)/=zero((to_integer(shift_amount) - 1) downto 0) and input_b<16 and operation_selection="110" else
+	overflow_flag	<=	'1' when ((input_a(15) xnor input_b(15)) and (input_a(15) xor ula_out(15)))='1' and operation_selection="000" else
+						'1' when ((input_a(15) xor input_b(15)) and (input_a(15) xor ula_out(15)))='1' and operation_selection="001" else
+						'1' when shift_amount/=0 and shift_left_a_b(15)='0' and input_a(15 downto (15 - (to_integer(shift_amount) - 1)))/=zero(15 downto (15 - (to_integer(shift_amount) - 1))) and input_b<16 and operation_selection="101" else
+						'1' when shift_amount/=0 and shift_left_a_b(15)='1' and input_a(15 downto (15 - (to_integer(shift_amount) - 1)))/=ones(15 downto (15 - (to_integer(shift_amount) - 1))) and input_b<16 and operation_selection="101" else
+						'1' when input_a/=zero and input_b>=16 and operation_selection="101" else
+						'1' when (input_a&'0')/=unsigned(resize(signed(not((input_a-1)xor input_a)),17)) and ( (input_b>=16) or ( input_b<16 and shift_amount/="0000" and input_a((to_integer(shift_amount) - 1) downto 0)/=zero((to_integer(shift_amount) - 1) downto 0))) and operation_selection="110" else
 						'0';
 					
 	output 			<= 	ula_out;
