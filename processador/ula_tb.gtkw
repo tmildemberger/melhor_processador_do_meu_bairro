@@ -1,0 +1,62 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue Apr 26 20:30:19 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\ula_tb.ghw"
+[dumpfile_mtime] "Tue Apr 26 20:15:16 2022"
+[dumpfile_size] 6023
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\ula_tb.gtkw"
+[timestart] 0
+[size] 1286 600
+[pos] -143 -74
+*-11.711125 40600000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 43
+[signals_width] 338
+[sst_expanded] 0
+[sst_vpaned_height] 154
+@200
+-Sinais internos:
+@22
+[color] 7
+#{top.ula_tb.uut.ula_out[15:0]} top.ula_tb.uut.ula_out[15] top.ula_tb.uut.ula_out[14] top.ula_tb.uut.ula_out[13] top.ula_tb.uut.ula_out[12] top.ula_tb.uut.ula_out[11] top.ula_tb.uut.ula_out[10] top.ula_tb.uut.ula_out[9] top.ula_tb.uut.ula_out[8] top.ula_tb.uut.ula_out[7] top.ula_tb.uut.ula_out[6] top.ula_tb.uut.ula_out[5] top.ula_tb.uut.ula_out[4] top.ula_tb.uut.ula_out[3] top.ula_tb.uut.ula_out[2] top.ula_tb.uut.ula_out[1] top.ula_tb.uut.ula_out[0]
+[color] 7
+#{top.ula_tb.uut.zero[15:0]} top.ula_tb.uut.zero[15] top.ula_tb.uut.zero[14] top.ula_tb.uut.zero[13] top.ula_tb.uut.zero[12] top.ula_tb.uut.zero[11] top.ula_tb.uut.zero[10] top.ula_tb.uut.zero[9] top.ula_tb.uut.zero[8] top.ula_tb.uut.zero[7] top.ula_tb.uut.zero[6] top.ula_tb.uut.zero[5] top.ula_tb.uut.zero[4] top.ula_tb.uut.zero[3] top.ula_tb.uut.zero[2] top.ula_tb.uut.zero[1] top.ula_tb.uut.zero[0]
+[color] 7
+#{top.ula_tb.uut.ones[15:0]} top.ula_tb.uut.ones[15] top.ula_tb.uut.ones[14] top.ula_tb.uut.ones[13] top.ula_tb.uut.ones[12] top.ula_tb.uut.ones[11] top.ula_tb.uut.ones[10] top.ula_tb.uut.ones[9] top.ula_tb.uut.ones[8] top.ula_tb.uut.ones[7] top.ula_tb.uut.ones[6] top.ula_tb.uut.ones[5] top.ula_tb.uut.ones[4] top.ula_tb.uut.ones[3] top.ula_tb.uut.ones[2] top.ula_tb.uut.ones[1] top.ula_tb.uut.ones[0]
+[color] 7
+#{top.ula_tb.uut.shift_amount[4:0]} top.ula_tb.uut.shift_amount[4] top.ula_tb.uut.shift_amount[3] top.ula_tb.uut.shift_amount[2] top.ula_tb.uut.shift_amount[1] top.ula_tb.uut.shift_amount[0]
+[color] 7
+#{top.ula_tb.uut.soma_a_b[16:0]} top.ula_tb.uut.soma_a_b[16] top.ula_tb.uut.soma_a_b[15] top.ula_tb.uut.soma_a_b[14] top.ula_tb.uut.soma_a_b[13] top.ula_tb.uut.soma_a_b[12] top.ula_tb.uut.soma_a_b[11] top.ula_tb.uut.soma_a_b[10] top.ula_tb.uut.soma_a_b[9] top.ula_tb.uut.soma_a_b[8] top.ula_tb.uut.soma_a_b[7] top.ula_tb.uut.soma_a_b[6] top.ula_tb.uut.soma_a_b[5] top.ula_tb.uut.soma_a_b[4] top.ula_tb.uut.soma_a_b[3] top.ula_tb.uut.soma_a_b[2] top.ula_tb.uut.soma_a_b[1] top.ula_tb.uut.soma_a_b[0]
+[color] 7
+#{top.ula_tb.uut.shift_left_a_b[31:0]} top.ula_tb.uut.shift_left_a_b[31] top.ula_tb.uut.shift_left_a_b[30] top.ula_tb.uut.shift_left_a_b[29] top.ula_tb.uut.shift_left_a_b[28] top.ula_tb.uut.shift_left_a_b[27] top.ula_tb.uut.shift_left_a_b[26] top.ula_tb.uut.shift_left_a_b[25] top.ula_tb.uut.shift_left_a_b[24] top.ula_tb.uut.shift_left_a_b[23] top.ula_tb.uut.shift_left_a_b[22] top.ula_tb.uut.shift_left_a_b[21] top.ula_tb.uut.shift_left_a_b[20] top.ula_tb.uut.shift_left_a_b[19] top.ula_tb.uut.shift_left_a_b[18] top.ula_tb.uut.shift_left_a_b[17] top.ula_tb.uut.shift_left_a_b[16] top.ula_tb.uut.shift_left_a_b[15] top.ula_tb.uut.shift_left_a_b[14] top.ula_tb.uut.shift_left_a_b[13] top.ula_tb.uut.shift_left_a_b[12] top.ula_tb.uut.shift_left_a_b[11] top.ula_tb.uut.shift_left_a_b[10] top.ula_tb.uut.shift_left_a_b[9] top.ula_tb.uut.shift_left_a_b[8] top.ula_tb.uut.shift_left_a_b[7] top.ula_tb.uut.shift_left_a_b[6] top.ula_tb.uut.shift_left_a_b[5] top.ula_tb.uut.shift_left_a_b[4] top.ula_tb.uut.shift_left_a_b[3] top.ula_tb.uut.shift_left_a_b[2] top.ula_tb.uut.shift_left_a_b[1] top.ula_tb.uut.shift_left_a_b[0]
+[color] 7
+#{top.ula_tb.uut.shift_right_a_b[31:0]} top.ula_tb.uut.shift_right_a_b[31] top.ula_tb.uut.shift_right_a_b[30] top.ula_tb.uut.shift_right_a_b[29] top.ula_tb.uut.shift_right_a_b[28] top.ula_tb.uut.shift_right_a_b[27] top.ula_tb.uut.shift_right_a_b[26] top.ula_tb.uut.shift_right_a_b[25] top.ula_tb.uut.shift_right_a_b[24] top.ula_tb.uut.shift_right_a_b[23] top.ula_tb.uut.shift_right_a_b[22] top.ula_tb.uut.shift_right_a_b[21] top.ula_tb.uut.shift_right_a_b[20] top.ula_tb.uut.shift_right_a_b[19] top.ula_tb.uut.shift_right_a_b[18] top.ula_tb.uut.shift_right_a_b[17] top.ula_tb.uut.shift_right_a_b[16] top.ula_tb.uut.shift_right_a_b[15] top.ula_tb.uut.shift_right_a_b[14] top.ula_tb.uut.shift_right_a_b[13] top.ula_tb.uut.shift_right_a_b[12] top.ula_tb.uut.shift_right_a_b[11] top.ula_tb.uut.shift_right_a_b[10] top.ula_tb.uut.shift_right_a_b[9] top.ula_tb.uut.shift_right_a_b[8] top.ula_tb.uut.shift_right_a_b[7] top.ula_tb.uut.shift_right_a_b[6] top.ula_tb.uut.shift_right_a_b[5] top.ula_tb.uut.shift_right_a_b[4] top.ula_tb.uut.shift_right_a_b[3] top.ula_tb.uut.shift_right_a_b[2] top.ula_tb.uut.shift_right_a_b[1] top.ula_tb.uut.shift_right_a_b[0]
+[color] 7
+#{top.ula_tb.uut.rotate_a_b[15:0]} top.ula_tb.uut.rotate_a_b[15] top.ula_tb.uut.rotate_a_b[14] top.ula_tb.uut.rotate_a_b[13] top.ula_tb.uut.rotate_a_b[12] top.ula_tb.uut.rotate_a_b[11] top.ula_tb.uut.rotate_a_b[10] top.ula_tb.uut.rotate_a_b[9] top.ula_tb.uut.rotate_a_b[8] top.ula_tb.uut.rotate_a_b[7] top.ula_tb.uut.rotate_a_b[6] top.ula_tb.uut.rotate_a_b[5] top.ula_tb.uut.rotate_a_b[4] top.ula_tb.uut.rotate_a_b[3] top.ula_tb.uut.rotate_a_b[2] top.ula_tb.uut.rotate_a_b[1] top.ula_tb.uut.rotate_a_b[0]
+@200
+-
+-Sinais visíveis externamente:
+-Entradas:
+@22
+[color] 5
+#{top.ula_tb.uut.input_a[15:0]} top.ula_tb.uut.input_a[15] top.ula_tb.uut.input_a[14] top.ula_tb.uut.input_a[13] top.ula_tb.uut.input_a[12] top.ula_tb.uut.input_a[11] top.ula_tb.uut.input_a[10] top.ula_tb.uut.input_a[9] top.ula_tb.uut.input_a[8] top.ula_tb.uut.input_a[7] top.ula_tb.uut.input_a[6] top.ula_tb.uut.input_a[5] top.ula_tb.uut.input_a[4] top.ula_tb.uut.input_a[3] top.ula_tb.uut.input_a[2] top.ula_tb.uut.input_a[1] top.ula_tb.uut.input_a[0]
+#{top.ula_tb.uut.input_b[15:0]} top.ula_tb.uut.input_b[15] top.ula_tb.uut.input_b[14] top.ula_tb.uut.input_b[13] top.ula_tb.uut.input_b[12] top.ula_tb.uut.input_b[11] top.ula_tb.uut.input_b[10] top.ula_tb.uut.input_b[9] top.ula_tb.uut.input_b[8] top.ula_tb.uut.input_b[7] top.ula_tb.uut.input_b[6] top.ula_tb.uut.input_b[5] top.ula_tb.uut.input_b[4] top.ula_tb.uut.input_b[3] top.ula_tb.uut.input_b[2] top.ula_tb.uut.input_b[1] top.ula_tb.uut.input_b[0]
+@28
+[color] 2
+#{top.ula_tb.uut.operation_selection[2:0]} top.ula_tb.uut.operation_selection[2] top.ula_tb.uut.operation_selection[1] top.ula_tb.uut.operation_selection[0]
+@200
+-Saídas:
+@22
+[color] 6
+#{top.ula_tb.uut.output[15:0]} top.ula_tb.uut.output[15] top.ula_tb.uut.output[14] top.ula_tb.uut.output[13] top.ula_tb.uut.output[12] top.ula_tb.uut.output[11] top.ula_tb.uut.output[10] top.ula_tb.uut.output[9] top.ula_tb.uut.output[8] top.ula_tb.uut.output[7] top.ula_tb.uut.output[6] top.ula_tb.uut.output[5] top.ula_tb.uut.output[4] top.ula_tb.uut.output[3] top.ula_tb.uut.output[2] top.ula_tb.uut.output[1] top.ula_tb.uut.output[0]
+@28
+[color] 3
+top.ula_tb.uut.carry_flag
+[color] 3
+top.ula_tb.uut.zero_flag
+[color] 3
+top.ula_tb.uut.negative_flag
+[color] 3
+top.ula_tb.uut.overflow_flag
+[pattern_trace] 1
+[pattern_trace] 0

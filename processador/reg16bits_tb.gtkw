@@ -1,0 +1,86 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue Apr 26 20:13:26 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\reg16bits_tb.ghw"
+[dumpfile_mtime] "Tue Apr 26 20:07:22 2022"
+[dumpfile_size] 918
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\reg16bits_tb.gtkw"
+[timestart] 0
+[size] 1126 600
+[pos] 96 7
+*-27.969246 63000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.reg16bits_tb.
+[sst_width] 211
+[signals_width] 178
+[sst_expanded] 1
+[sst_vpaned_height] 154
+@29
+[color] 6
+top.reg16bits_tb.clock
+@28
+[color] 3
+top.reg16bits_tb.reset
+top.reg16bits_tb.write_enable
+@c00022
+#{top.reg16bits_tb.data_in[15:0]} top.reg16bits_tb.data_in[15] top.reg16bits_tb.data_in[14] top.reg16bits_tb.data_in[13] top.reg16bits_tb.data_in[12] top.reg16bits_tb.data_in[11] top.reg16bits_tb.data_in[10] top.reg16bits_tb.data_in[9] top.reg16bits_tb.data_in[8] top.reg16bits_tb.data_in[7] top.reg16bits_tb.data_in[6] top.reg16bits_tb.data_in[5] top.reg16bits_tb.data_in[4] top.reg16bits_tb.data_in[3] top.reg16bits_tb.data_in[2] top.reg16bits_tb.data_in[1] top.reg16bits_tb.data_in[0]
+@28
+top.reg16bits_tb.data_in[15]
+top.reg16bits_tb.data_in[14]
+top.reg16bits_tb.data_in[13]
+top.reg16bits_tb.data_in[12]
+top.reg16bits_tb.data_in[11]
+top.reg16bits_tb.data_in[10]
+top.reg16bits_tb.data_in[9]
+top.reg16bits_tb.data_in[8]
+top.reg16bits_tb.data_in[7]
+top.reg16bits_tb.data_in[6]
+top.reg16bits_tb.data_in[5]
+top.reg16bits_tb.data_in[4]
+top.reg16bits_tb.data_in[3]
+top.reg16bits_tb.data_in[2]
+top.reg16bits_tb.data_in[1]
+top.reg16bits_tb.data_in[0]
+@1401200
+-group_end
+@c00022
+[color] 2
+#{top.reg16bits_tb.data_out[15:0]} top.reg16bits_tb.data_out[15] top.reg16bits_tb.data_out[14] top.reg16bits_tb.data_out[13] top.reg16bits_tb.data_out[12] top.reg16bits_tb.data_out[11] top.reg16bits_tb.data_out[10] top.reg16bits_tb.data_out[9] top.reg16bits_tb.data_out[8] top.reg16bits_tb.data_out[7] top.reg16bits_tb.data_out[6] top.reg16bits_tb.data_out[5] top.reg16bits_tb.data_out[4] top.reg16bits_tb.data_out[3] top.reg16bits_tb.data_out[2] top.reg16bits_tb.data_out[1] top.reg16bits_tb.data_out[0]
+@28
+[color] 2
+top.reg16bits_tb.data_out[15]
+[color] 2
+top.reg16bits_tb.data_out[14]
+[color] 2
+top.reg16bits_tb.data_out[13]
+[color] 2
+top.reg16bits_tb.data_out[12]
+[color] 2
+top.reg16bits_tb.data_out[11]
+[color] 2
+top.reg16bits_tb.data_out[10]
+[color] 2
+top.reg16bits_tb.data_out[9]
+[color] 2
+top.reg16bits_tb.data_out[8]
+[color] 2
+top.reg16bits_tb.data_out[7]
+[color] 2
+top.reg16bits_tb.data_out[6]
+[color] 2
+top.reg16bits_tb.data_out[5]
+[color] 2
+top.reg16bits_tb.data_out[4]
+[color] 2
+top.reg16bits_tb.data_out[3]
+[color] 2
+top.reg16bits_tb.data_out[2]
+[color] 2
+top.reg16bits_tb.data_out[1]
+[color] 2
+top.reg16bits_tb.data_out[0]
+@1401200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
