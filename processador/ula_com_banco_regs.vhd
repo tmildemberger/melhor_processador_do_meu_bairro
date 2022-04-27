@@ -47,24 +47,24 @@ architecture a_ula_com_banco_regs of ula_com_banco_regs is
 	
 	signal ula_output_signal, bank_out_1, bank_out_2, ula_input_b	: unsigned(15 downto 0);
 begin
-	ula 	: ula port map(			input_a				=> bank_out_1,
-									input_b				=> ula_input_b,
-									operation_selection	=> operation_selection,
-									output				=> ula_output_signal,
-									carry_flag			=> carry_flag,
-									zero_flag			=> zero_flag,
-									negative_flag		=> negative_flag,
-									overflow_flag		=> overflow_flag);
+	ula_banco 	: ula port map(			input_a				=> bank_out_1,
+										input_b				=> ula_input_b,
+										operation_selection	=> operation_selection,
+										output				=> ula_output_signal,
+										carry_flag			=> carry_flag,
+										zero_flag			=> zero_flag,
+										negative_flag		=> negative_flag,
+										overflow_flag		=> overflow_flag);
 	
-	banco 	: banco_regs port map (	clock 				=> clock,
-									reset				=> reset,
-									write_enable		=> write_enable,
-									read_register_1		=> read_register_1,
-									read_register_2		=> read_register_2,
-									write_register		=> write_register,
-									write_data			=> ula_output_signal,
-									read_data_1			=> bank_out_1,
-									read_data_2			=> bank_out_2);
+	banco 		: banco_regs port map (	clock 				=> clock,
+										reset				=> reset,
+										write_enable		=> write_enable,
+										read_register_1		=> read_register_1,
+										read_register_2		=> read_register_2,
+										write_register		=> write_register,
+										write_data			=> ula_output_signal,
+										read_data_1			=> bank_out_1,
+										read_data_2			=> bank_out_2);
 	
 	ula_input_b		<=  bank_out_2 when ula_input_selection='0' else
 						data_input when ula_input_selection='1' else
