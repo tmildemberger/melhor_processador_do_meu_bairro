@@ -10,6 +10,9 @@ INPUTS := ula reg16bits banco_regs ula_com_banco_regs
 
 .DELETE_ON_ERROR:
 
+.PHONY: all
+all: $(INPUTS:%=%_tb.ghw)
+
 work-obj93.cf: $(INPUTS:%=%.vhd) $(INPUTS:%=%_tb.vhd)
 	ghdl -a $^
 
