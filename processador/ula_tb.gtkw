@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Apr 26 20:30:19 2022
+[*] Thu Apr 28 01:18:00 2022
 [*]
 [dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\ula_tb.ghw"
-[dumpfile_mtime] "Tue Apr 26 20:15:16 2022"
+[dumpfile_mtime] "Thu Apr 28 01:11:47 2022"
 [dumpfile_size] 6023
 [savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\ula_tb.gtkw"
 [timestart] 0
 [size] 1286 600
-[pos] -143 -74
-*-11.711125 40600000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-26.711124 40591390 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 43
 [signals_width] 338
 [sst_expanded] 0

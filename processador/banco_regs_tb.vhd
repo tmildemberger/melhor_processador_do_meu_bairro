@@ -67,7 +67,7 @@ begin
         write_register <= "000";
         write_data <= "1010101010101010";   -- testa entrada aleatória no write_data
                                             -- e com o registrador 0 selecionado 
-                                            -- sem write_enable
+                                            -- com write_enable (não escreve mesmo assim pois é o registrador 0)
         wait for period_time*2;
         write_enable <= '1';
         write_register <= "001";
@@ -104,6 +104,7 @@ begin
         write_data <= "0000000000000111";   -- testa escrita no registrador 7
 
         wait for period_time*2;
+        write_enable <= '0';
         read_register_1 <= "000";           -- testa leitura do registrador 0
                                             -- com o read_register_1
         wait for period_time*2;
