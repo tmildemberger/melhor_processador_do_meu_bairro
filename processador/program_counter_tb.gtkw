@@ -1,0 +1,33 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed May 04 19:17:39 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\program_counter_tb.ghw"
+[dumpfile_mtime] "Wed May 04 19:15:10 2022"
+[dumpfile_size] 791
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\program_counter_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-28.153193 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.program_counter_tb.
+[treeopen] top.program_counter_tb.uut.
+[sst_width] 211
+[signals_width] 134
+[sst_expanded] 1
+[sst_vpaned_height] 154
+@28
+[color] 1
+top.program_counter_tb.finished
+[color] 6
+top.program_counter_tb.uut.clock
+[color] 3
+top.program_counter_tb.uut.reset
+top.program_counter_tb.uut.write_enable
+@22
+#{top.program_counter_tb.data_in[6:0]} top.program_counter_tb.data_in[6] top.program_counter_tb.data_in[5] top.program_counter_tb.data_in[4] top.program_counter_tb.data_in[3] top.program_counter_tb.data_in[2] top.program_counter_tb.data_in[1] top.program_counter_tb.data_in[0]
+[color] 2
+#{top.program_counter_tb.data_out[6:0]} top.program_counter_tb.data_out[6] top.program_counter_tb.data_out[5] top.program_counter_tb.data_out[4] top.program_counter_tb.data_out[3] top.program_counter_tb.data_out[2] top.program_counter_tb.data_out[1] top.program_counter_tb.data_out[0]
+[pattern_trace] 1
+[pattern_trace] 0

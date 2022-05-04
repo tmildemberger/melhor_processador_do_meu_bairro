@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed May 04 19:27:12 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\proto_uc_tb.ghw"
+[dumpfile_mtime] "Wed May 04 19:24:56 2022"
+[dumpfile_size] 1262
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\proto_uc_tb.gtkw"
+[timestart] 0
+[size] 1130 600
+[pos] -27 -10
+*-28.943647 1812000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.proto_uc_tb.
+[treeopen] top.proto_uc_tb.uut.
+[sst_width] 43
+[signals_width] 299
+[sst_expanded] 0
+[sst_vpaned_height] 154
+@200
+-Sinais internos:
+@22
+[color] 7
+#{top.proto_uc_tb.uut.pc_data_in[6:0]} top.proto_uc_tb.uut.pc_data_in[6] top.proto_uc_tb.uut.pc_data_in[5] top.proto_uc_tb.uut.pc_data_in[4] top.proto_uc_tb.uut.pc_data_in[3] top.proto_uc_tb.uut.pc_data_in[2] top.proto_uc_tb.uut.pc_data_in[1] top.proto_uc_tb.uut.pc_data_in[0]
+[color] 7
+#{top.proto_uc_tb.uut.pc_data_out[6:0]} top.proto_uc_tb.uut.pc_data_out[6] top.proto_uc_tb.uut.pc_data_out[5] top.proto_uc_tb.uut.pc_data_out[4] top.proto_uc_tb.uut.pc_data_out[3] top.proto_uc_tb.uut.pc_data_out[2] top.proto_uc_tb.uut.pc_data_out[1] top.proto_uc_tb.uut.pc_data_out[0]
+@200
+-Sinais externamente visíveis:
+@28
+[color] 1
+top.proto_uc_tb.finished
+[color] 3
+top.proto_uc_tb.uut.clock
+@29
+[color] 7
+top.proto_uc_tb.uut.reset
+@22
+#{top.proto_uc_tb.program_counter_out[6:0]} top.proto_uc_tb.program_counter_out[6] top.proto_uc_tb.program_counter_out[5] top.proto_uc_tb.program_counter_out[4] top.proto_uc_tb.program_counter_out[3] top.proto_uc_tb.program_counter_out[2] top.proto_uc_tb.program_counter_out[1] top.proto_uc_tb.program_counter_out[0]
+[pattern_trace] 1
+[pattern_trace] 0

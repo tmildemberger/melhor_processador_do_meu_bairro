@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed May 04 02:09:41 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\maquina_de_estados_tb.ghw"
+[dumpfile_mtime] "Wed May 04 02:07:42 2022"
+[dumpfile_size] 784
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\maquina_de_estados_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-29.202766 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.maquina_de_estados_tb.
+[sst_width] 211
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 154
+@29
+[color] 5
+top.maquina_de_estados_tb.reset
+@28
+[color] 3
+top.maquina_de_estados_tb.clock
+[color] 1
+top.maquina_de_estados_tb.finished
+[color] 6
+top.maquina_de_estados_tb.estado
+[pattern_trace] 1
+[pattern_trace] 0

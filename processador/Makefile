@@ -1,12 +1,12 @@
 ifeq ($(OS),Windows_NT)
-	RM ?= del
+	RM = del
 	quiet_fork = (start /b $(1) >NUL 2>&1)
 else
-	RM ?= rm -f
+	RM = rm -f
 	quiet_fork = ($(1) >/dev/null 2>&1 &)
 endif
 
-INPUTS := ula reg16bits banco_regs ula_com_banco_regs
+INPUTS := ula reg16bits banco_regs ula_com_banco_regs rom maquina_de_estados program_counter proto_uc proto_uc_rom uc_com_jump
 
 .DELETE_ON_ERROR:
 
@@ -25,4 +25,4 @@ $(INPUTS:%=%_tb.ghw): %_tb.ghw: work-obj93.cf
 
 .PHONY: clean
 clean:
-	$(RM) $(INPUTS:%=%_tb.ghw) work-obj93.cf
+	$(RM) work-obj93.cf

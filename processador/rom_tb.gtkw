@@ -1,0 +1,31 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed May 04 01:56:42 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\rom_tb.ghw"
+[dumpfile_mtime] "Wed May 04 01:53:22 2022"
+[dumpfile_size] 899
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\rom_tb.gtkw"
+[timestart] 0
+[size] 1096 600
+[pos] -1 -1
+*-29.100885 636000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.rom_tb.
+[treeopen] top.rom_tb.uut.
+[sst_width] 211
+[signals_width] 173
+[sst_expanded] 1
+[sst_vpaned_height] 154
+@28
+[color] 3
+top.rom_tb.clock
+[color] 1
+top.rom_tb.finished
+@22
+#{top.rom_tb.endereco[6:0]} top.rom_tb.endereco[6] top.rom_tb.endereco[5] top.rom_tb.endereco[4] top.rom_tb.endereco[3] top.rom_tb.endereco[2] top.rom_tb.endereco[1] top.rom_tb.endereco[0]
+@23
+[color] 6
+#{top.rom_tb.dado[17:0]} top.rom_tb.dado[17] top.rom_tb.dado[16] top.rom_tb.dado[15] top.rom_tb.dado[14] top.rom_tb.dado[13] top.rom_tb.dado[12] top.rom_tb.dado[11] top.rom_tb.dado[10] top.rom_tb.dado[9] top.rom_tb.dado[8] top.rom_tb.dado[7] top.rom_tb.dado[6] top.rom_tb.dado[5] top.rom_tb.dado[4] top.rom_tb.dado[3] top.rom_tb.dado[2] top.rom_tb.dado[1] top.rom_tb.dado[0]
+[pattern_trace] 1
+[pattern_trace] 0
