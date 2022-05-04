@@ -37,5 +37,34 @@ architecture a_uc_com_jump of uc_com_jump is
 	signal opcode						: unsigned(4 downto 0)	:= (others => '0');
 	signal endereco_do_salto			: unsigned(6 downto 0)	:= (others => '0');
 begin
-	--
+	maq_estados : maquina_de_estados port map(	clock 	=> clock,
+												reset	=> reset,
+												estado  => estado);
+
+	uc_rom : rom port map(	clock 	 => clock,
+							endereco => pc_data_out,
+							dado	 => instrucao);
+
+	pc : program_counter port map(	clock		 => clock,
+									reset		 => reset,
+									write_enable => pc_write_enable,
+									data_in		 => pc_data_in,
+									data_out	 => pc_data_out);
+
+	rom_out 			<= 	instrucao when estado='0';
+
+	opcode 				<= 	instrucao(17 downto 13);
+	
+	estado_atual 		<= 	estado;
+
+	-- opcode do jump é 00001, opcode do nop é "00000" (ignorado por enquanto)
+	pc_data_in 			<= 	endereco_do_salto when estado='1' and opcode="00001" else
+							pc_data_out + 1 when estado='1';
+
+	pc_write_enable		<= 	estado;
+
+	program_counter_out <= 	pc_data_out;
+
+	endereco_do_salto 	<=	instrucao(6 downto 0) when opcode="00001" else (others => '0');
+	
 end architecture;
