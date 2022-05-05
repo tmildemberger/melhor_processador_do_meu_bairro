@@ -48,9 +48,9 @@ begin
 	begin
 													-- testa reset
 		wait for period_time*2;
-		wait for period_time*32;					-- testa algumas mudanças de estado
+		wait for period_time*32;					-- testa o funcionamento por alguns ciclos
         -- o programa contém um loop infinito causado por jump pra trás na instrução
-        --  de endereço 8 na rom, então ele nunca chega ao final.
+        --  de endereço 8 na rom, então ele nunca passa do endereço 8.
 		finished <= '1';							-- acaba
 		wait;
 	end process;

@@ -51,20 +51,17 @@ begin
 									data_in		 => pc_data_in,
 									data_out	 => pc_data_out);
 
-	rom_out 			<= 	instrucao when estado='0';
 
 	opcode 				<= 	instrucao(17 downto 13);
+	endereco_do_salto 	<=	instrucao(6 downto 0);
 	
-	estado_atual 		<= 	estado;
-
 	-- opcode do jump é 00001, opcode do nop é "00000" (ignorado por enquanto)
-	pc_data_in 			<= 	endereco_do_salto when estado='1' and opcode="00001" else
-							pc_data_out + 1 when estado='1';
+	pc_data_in 			<= 	endereco_do_salto when opcode="00001" else
+							pc_data_out + 1;
 
 	pc_write_enable		<= 	estado;
 
+	estado_atual 		<= 	estado;
 	program_counter_out <= 	pc_data_out;
-
-	endereco_do_salto 	<=	instrucao(6 downto 0) when opcode="00001" else (others => '0');
-	
+	rom_out 			<= 	instrucao;
 end architecture;

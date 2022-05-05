@@ -1,0 +1,48 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed May 04 23:57:34 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\uc_com_jump_tb.ghw"
+[dumpfile_mtime] "Wed May 04 23:54:56 2022"
+[dumpfile_size] 2602
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\uc_com_jump_tb.gtkw"
+[timestart] 0
+[size] 1166 600
+[pos] -68 -39
+*-28.910702 227000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.uc_com_jump_tb.
+[treeopen] top.uc_com_jump_tb.uut.
+[sst_width] 43
+[signals_width] 318
+[sst_expanded] 0
+[sst_vpaned_height] 154
+@200
+-Sinais internos:
+@28
+top.uc_com_jump_tb.uut.pc_write_enable
+@22
+#{top.uc_com_jump_tb.uut.instrucao[17:0]} top.uc_com_jump_tb.uut.instrucao[17] top.uc_com_jump_tb.uut.instrucao[16] top.uc_com_jump_tb.uut.instrucao[15] top.uc_com_jump_tb.uut.instrucao[14] top.uc_com_jump_tb.uut.instrucao[13] top.uc_com_jump_tb.uut.instrucao[12] top.uc_com_jump_tb.uut.instrucao[11] top.uc_com_jump_tb.uut.instrucao[10] top.uc_com_jump_tb.uut.instrucao[9] top.uc_com_jump_tb.uut.instrucao[8] top.uc_com_jump_tb.uut.instrucao[7] top.uc_com_jump_tb.uut.instrucao[6] top.uc_com_jump_tb.uut.instrucao[5] top.uc_com_jump_tb.uut.instrucao[4] top.uc_com_jump_tb.uut.instrucao[3] top.uc_com_jump_tb.uut.instrucao[2] top.uc_com_jump_tb.uut.instrucao[1] top.uc_com_jump_tb.uut.instrucao[0]
+#{top.uc_com_jump_tb.uut.opcode[4:0]} top.uc_com_jump_tb.uut.opcode[4] top.uc_com_jump_tb.uut.opcode[3] top.uc_com_jump_tb.uut.opcode[2] top.uc_com_jump_tb.uut.opcode[1] top.uc_com_jump_tb.uut.opcode[0]
+#{top.uc_com_jump_tb.uut.endereco_do_salto[6:0]} top.uc_com_jump_tb.uut.endereco_do_salto[6] top.uc_com_jump_tb.uut.endereco_do_salto[5] top.uc_com_jump_tb.uut.endereco_do_salto[4] top.uc_com_jump_tb.uut.endereco_do_salto[3] top.uc_com_jump_tb.uut.endereco_do_salto[2] top.uc_com_jump_tb.uut.endereco_do_salto[1] top.uc_com_jump_tb.uut.endereco_do_salto[0]
+#{top.uc_com_jump_tb.uut.pc_data_in[6:0]} top.uc_com_jump_tb.uut.pc_data_in[6] top.uc_com_jump_tb.uut.pc_data_in[5] top.uc_com_jump_tb.uut.pc_data_in[4] top.uc_com_jump_tb.uut.pc_data_in[3] top.uc_com_jump_tb.uut.pc_data_in[2] top.uc_com_jump_tb.uut.pc_data_in[1] top.uc_com_jump_tb.uut.pc_data_in[0]
+#{top.uc_com_jump_tb.uut.pc_data_out[6:0]} top.uc_com_jump_tb.uut.pc_data_out[6] top.uc_com_jump_tb.uut.pc_data_out[5] top.uc_com_jump_tb.uut.pc_data_out[4] top.uc_com_jump_tb.uut.pc_data_out[3] top.uc_com_jump_tb.uut.pc_data_out[2] top.uc_com_jump_tb.uut.pc_data_out[1] top.uc_com_jump_tb.uut.pc_data_out[0]
+#{top.uc_com_jump_tb.uut.uc_rom.endereco[6:0]} top.uc_com_jump_tb.uut.uc_rom.endereco[6] top.uc_com_jump_tb.uut.uc_rom.endereco[5] top.uc_com_jump_tb.uut.uc_rom.endereco[4] top.uc_com_jump_tb.uut.uc_rom.endereco[3] top.uc_com_jump_tb.uut.uc_rom.endereco[2] top.uc_com_jump_tb.uut.uc_rom.endereco[1] top.uc_com_jump_tb.uut.uc_rom.endereco[0]
+@23
+#{top.uc_com_jump_tb.uut.uc_rom.dado[17:0]} top.uc_com_jump_tb.uut.uc_rom.dado[17] top.uc_com_jump_tb.uut.uc_rom.dado[16] top.uc_com_jump_tb.uut.uc_rom.dado[15] top.uc_com_jump_tb.uut.uc_rom.dado[14] top.uc_com_jump_tb.uut.uc_rom.dado[13] top.uc_com_jump_tb.uut.uc_rom.dado[12] top.uc_com_jump_tb.uut.uc_rom.dado[11] top.uc_com_jump_tb.uut.uc_rom.dado[10] top.uc_com_jump_tb.uut.uc_rom.dado[9] top.uc_com_jump_tb.uut.uc_rom.dado[8] top.uc_com_jump_tb.uut.uc_rom.dado[7] top.uc_com_jump_tb.uut.uc_rom.dado[6] top.uc_com_jump_tb.uut.uc_rom.dado[5] top.uc_com_jump_tb.uut.uc_rom.dado[4] top.uc_com_jump_tb.uut.uc_rom.dado[3] top.uc_com_jump_tb.uut.uc_rom.dado[2] top.uc_com_jump_tb.uut.uc_rom.dado[1] top.uc_com_jump_tb.uut.uc_rom.dado[0]
+@28
+[color] 1
+top.uc_com_jump_tb.finished
+@200
+-Sinais visíveis externamente:
+@28
+[color] 3
+top.uc_com_jump_tb.uut.clock
+[color] 5
+top.uc_com_jump_tb.uut.reset
+top.uc_com_jump_tb.uut.estado_atual
+@22
+#{top.uc_com_jump_tb.program_counter_out[6:0]} top.uc_com_jump_tb.program_counter_out[6] top.uc_com_jump_tb.program_counter_out[5] top.uc_com_jump_tb.program_counter_out[4] top.uc_com_jump_tb.program_counter_out[3] top.uc_com_jump_tb.program_counter_out[2] top.uc_com_jump_tb.program_counter_out[1] top.uc_com_jump_tb.program_counter_out[0]
+#{top.uc_com_jump_tb.rom_out[17:0]} top.uc_com_jump_tb.rom_out[17] top.uc_com_jump_tb.rom_out[16] top.uc_com_jump_tb.rom_out[15] top.uc_com_jump_tb.rom_out[14] top.uc_com_jump_tb.rom_out[13] top.uc_com_jump_tb.rom_out[12] top.uc_com_jump_tb.rom_out[11] top.uc_com_jump_tb.rom_out[10] top.uc_com_jump_tb.rom_out[9] top.uc_com_jump_tb.rom_out[8] top.uc_com_jump_tb.rom_out[7] top.uc_com_jump_tb.rom_out[6] top.uc_com_jump_tb.rom_out[5] top.uc_com_jump_tb.rom_out[4] top.uc_com_jump_tb.rom_out[3] top.uc_com_jump_tb.rom_out[2] top.uc_com_jump_tb.rom_out[1] top.uc_com_jump_tb.rom_out[0]
+[pattern_trace] 1
+[pattern_trace] 0
