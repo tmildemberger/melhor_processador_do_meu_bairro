@@ -1,0 +1,57 @@
+Processador escolhido: Infineon C166 (com tamanho de instrução de 18 bits).
+
+* Estrutura e nome dos registradores:
+  - Existem 16 registradores de propósito geral em cada banco de registradores do processador original,
+  nomeados de R0 a R15; existem vários bancos de registradores mapeados em memória, mas existem 3 bancos físicos,
+  sendo um deles o "global" (que guarda o conteúdo do banco mapeado em memória selecionado atualmente)
+  e outros dois "locais" independentes de bancos mapeados em memória. Ainda assim, somente um banco mapeado
+  em memória pode estar selecionado no global, e somente um dos 3 bancos físicos pode estar ativado ao mesmo tempo.
+    
+  - Existem ainda registradores de uso específico (ou de funções especiais, como são chamados), como os
+  registradores MDL e MDH, utilizados nas instruções de multiplicação e divisão, o PSW, que contém as flags
+  resultantes das operações da ULA e outras flags, como a que seleciona o banco de registradores ativo. Um outro
+  registrador de uso específico notável é o Stack Pointer (SP), com o qual as instruções de PUSH e POP
+  (e algumas outras) implementam uma pilha do tipo full-descending. Por fim, existe também o Instruction Pointer (IP),
+  equivalente ao nosso Program Counter, que, diferentemente dos outros registradores de função especial, e juntamente
+  com o CSP (Code Segment Pointer) não pode ser acessado diretamente, mas somente alterado por branches.
+
+* Instruções originais do processador a implementar para operações de:
+  - Carga de constante:
+      - Existe a instrução "MOV Rn, #data4", que carrega uma constante imediata de 4 bits em um registrador de uso geral.
+      Existe também a instrução "MOV reg, #data16", que carrega uma constante imediata de 16 bits em um registrador que
+      pode ser de uso geral ou de função especial. A diferença entre as instruções é que a primeira é codificada em
+      2 bytes, e a segunda em 4 bytes.
+      
+  - Cópia de valor entre registradores:
+      - A instrução "MOV Rn, Rm" coloca no registrador de uso geral Rn o conteúdo do registrador de uso geral Rm, e é
+      codificada em 2 bytes no processador original.
+      
+  - Soma de dois valores:
+      - Existe a instrução "ADD Rn, Rm" com registradores de uso geral que coloca em Rn o conteúdo dele mesmo somado ao
+      valor do registrador Rm, e a instrução "ADD Rn, #data3" coloca em Rn o valor de Rn somado à constante imediata de
+      3 bits, sendo que ambas as instruções são codificadas em 2 bytes. Já a instrução codificada em 4 bytes
+      "ADD reg, #data16" coloca no registrador de destino o seu próprio valor somado à uma constante de 16 bits, sendo
+      que "reg" pode ser um registrador de função especial ou de uso geral.
+      
+  - Subtração de dois valores:
+      - Existe a instrução "SUB Rn, Rm" com registradores de uso geral que coloca em Rn o conteúdo dele mesmo subtraído
+      do valor do registrador Rm, e a instrução "SUB Rn, #data3" coloca em Rn o valor de Rn subtraído da constante
+      imediata de 3 bits, sendo que ambas as instruções são codificadas em 2 bytes. Já a instrução codificada em 4 bytes
+      "SUB reg, #data16" coloca no registrador de destino o seu próprio valor subtraído de uma constante de 16 bits,
+      sendo que "reg" pode ser um registrador de função especial ou de uso geral.
+      
+  - Desvio incondicional e condicional:
+      - No processador em questão, as principais instruções de desvio são "JMPA cc, caddr", "JMPR cc, rel" e "JMPI cc, [Rn]",
+      todas contendo em sua própria codificação 4 bits marcando a condição em que o salto ocorre, bits estes que podem ser
+      todos iguais a 0 para simbolizar um desvio incondicional, sendo que o JMPA é um salto cujo destino é um endereço
+      absoluto codificado na instrução (por isso ocupa 4 bytes), o JMPR é um salto relativo e o JMPI um salto indireto.
+      
+  - Instruções de acesso à memória:
+      - Na verdade existem muitas instruções que acessam a memória, como por exemplo "XOR Rm, [Rm]", "MOV [Rm], [Rn+]"
+      (que também pós-incrementa o Rn), entre outras, o que deixa claro que o processador não segue o modelo load/store.
+      Mesmo assim, instruções mais básicas cuja função única é acessar a memória existem, como a instrução "MOV Rm, [Rn]",
+      que acessa o endereço apontado por Rn e coloca o conteúdo em Rm (sendo Rn e Rm registradores de uso geral). Para escrita,
+      existe a instrução "MOV [Rm], Rn", que coloca o conteúdo de Rn na memória, no endereço apontado por Rm.
+      Essas duas instruções são codificadas em 2 bytes. Utilizando 4 bytes, existem as instruções parecidas
+      "MOV Rm, [Rn + #d16]" e "MOV [Rm + #d16], Rn", que acessam os endereços de forma indexada, utilizando os valores dos
+      registradores como endereços base, e como índice as constantes imediatas de 16 bits codificadas nas instruções.
