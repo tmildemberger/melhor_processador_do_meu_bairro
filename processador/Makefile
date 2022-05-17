@@ -26,7 +26,7 @@ $(INPUTS:%=sim-%): sim-%: %_tb.ghw
 	@$(call quiet_fork, gtkwave $< $(<:.ghw=.gtkw) --rcfile gtkwaverc)
 
 $(INPUTS:%=%_tb.ghw): %_tb.ghw: work-obj93.cf
-	ghdl -r $(@:.ghw=) --wave=$@
+	ghdl -r $(@:.ghw=) --wave=$@ --ieee-asserts=disable-at-0
 
 .PHONY: clean
 clean:
