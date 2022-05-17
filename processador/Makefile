@@ -6,15 +6,20 @@ else
 	quiet_fork = ($(1) >/dev/null 2>&1 &)
 endif
 
-INPUTS := ula reg16bits banco_regs ula_com_banco_regs rom maquina_de_estados program_counter proto_uc proto_uc_rom uc_com_jump
+INPUTS := ula reg16bits banco_regs ula_com_banco_regs rom maquina_de_estados program_counter proto_uc proto_uc_rom uc_com_jump rom2 instruction_register unidade_de_controle processador
+PRE_INPUTS := estados_package
 
 .DELETE_ON_ERROR:
 
 .PHONY: all
 all: $(INPUTS:%=%_tb.ghw)
 
-work-obj93.cf: $(INPUTS:%=%.vhd) $(INPUTS:%=%_tb.vhd)
+.PHONY: pre_inputs
+pre_inputs: $(PRE_INPUTS:%=%.vhd)
 	ghdl -a $^
+
+work-obj93.cf: pre_inputs $(INPUTS:%=%.vhd) $(INPUTS:%=%_tb.vhd)
+	ghdl -a $(^:pre_inputs=)
 
 .PHONY: $(INPUTS:%=sim-%)
 $(INPUTS:%=sim-%): sim-%: %_tb.ghw

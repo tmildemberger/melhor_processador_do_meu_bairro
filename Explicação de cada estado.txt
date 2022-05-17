@@ -1,0 +1,72 @@
+Estado: instruction_fetch
+ ** Ação principal: colocar em IR a instrução atual sendo lida
+ * A ULA é utilizada para somar PC com 1
+  - É selecionado como entrada 1 da ULA o PC
+  - Como entrada 2 da ULA é selecionado o sinal "immediate_output"
+  - Fazendo "immediate_selection=00", o sinal "immediate_output" tem o valor 1
+  - A operação é selecionada pela UC ("ula_operation_control_selection=0"), e a operação selecionada é 000 (adição)
+  - O resultado não é salvo no registrador "ula_out_reg", mas sim diretamente no PC ("pc_write_enable=1")
+ * A saída da ROM também passa para o IR com "ir_write_enable=1"
+  - A ROM utilizada no momento faz leitura síncrona (só atualiza a saída na subida do clock),
+    mas o seu endereço já havia sido mudado para o endereço da instrução atual há mais de um ciclo,
+    e por isso o resultado já está pronto para ser movido para o registrador IR.
+
+Estado: instruction_decode
+ ** Ação principal: definir o formato da instrução, para ir para o estado apropriado (mas isso é
+    feito pela máquina de estados, então todo o resto do circuito pode ser usado para adiantar outras coisas)
+ * A ULA é utilizada para somar o PC à constante imediata de 8 bits com sinal extendido (para salto relativo)
+  - É selecionado como entrada 1 da ULA o PC
+  - Como entrada 2 da ULA é selecionado o sinal "immediate_output"
+  - Fazendo a seleção para que "immediate_output" tenha a constante imediata de 8 bits com sinal extendido
+  - A operação é selecionada pela UC ("ula_operation_control_selection=0"), e a operação selecionada é 000 (adição)
+  - O resultado agora é salvo no registrador "ula_out_reg", e só será usado caso a instrução seja de salto relativo
+
+Estado: formato_X
+ * O registrador a ser escrito é o selecionado por "ir_output(17 downto 15)", ao invés do padrão "ir_output(2 downto 0)"
+ * O dado a ser escrito no registrador vem do "banco_regs_write_data_selection=00", que seleciona o "immediate_output"
+ * O imediato selecionado é o "ir_output(15 downto 0)", a constante de 16 bits
+ * A escrita do dado no registrador selecionado é habilitada
+
+Estado: formato_I_parte_1
+ * A ULA é utilizada para realizar a operação selecionada com a constante imediata de 10 bits com sinal extendido
+  - É selecionado como entrada 1 da ULA o "read_register_1_data"
+  - Como entrada 2 da ULA é selecionado o sinal "immediate_output"
+  - Fazendo a seleção para que "immediate_output" tenha a constante imediata de 10 bits com sinal extendido
+  - A operação é selecionada pela instrução ("ula_operation_control_selection=1") bits "ir_output(10 downto 8)"
+  - O resultado é salvo no registrador "ula_out_reg", mas não será usado caso a instrução seja de MOV
+  - !!!!Observação: caso a instrução seja de CMP, "ir_output(10 downto 8)" será 001, ou seja, subtração, como deveria;
+                    caso a instrução seja de MOV, "ir_output(10 downto 8)" será 010, mas não importa, não será usado.
+
+Estado: formato_I_parte_2
+ * O registrador a ser escrito é o selecionado por "ir_output(2 downto 0)"
+ * O dado a ser escrito no registrador vem da saída do registrador ula_out_reg caso a instrução não seja MOV;
+   caso seja MOV, o dado virá de "immediate_output"
+ * O imediato selecionado é da constante de 10 bits com sinal extendido, que é guardada "picada",
+   em "ir_output(16 downto 12)" & "ir_output(7 downto 3)"
+ * A escrita do dado no registrador selecionado é habilitada caso a instrução não seja de CMP
+   (isso porque a comparação não guarda o resultado, somente altera as flags, mas isso ainda não foi implementado)
+
+Estado: formato_R_parte_1
+ * A ULA é utilizada para realizar a operação selecionada entre os dois registradores
+  - É selecionado como entrada 1 da ULA o "read_register_1_data"
+  - Como entrada 2 da ULA é selecionado o sinal "read_register_2_data"
+  - A operação é selecionada pela instrução ("ula_operation_control_selection=1") bits "ir_output(10 downto 8)"
+  - O resultado é salvo no registrador "ula_out_reg", mas não será usado caso a instrução seja de MOV
+  - !!!!Observação: caso a instrução seja de CMP, "ir_output(10 downto 8)" será 001, ou seja, subtração, como deveria;
+                    caso a instrução seja de MOV, "ir_output(10 downto 8)" será 010, mas não importa, não será usado.
+
+Estado: formato_R_parte_2
+ * O registrador a ser escrito é o selecionado por "ir_output(2 downto 0)"
+ * O dado a ser escrito no registrador vem da saída do registrador "ula_out_reg" caso a instrução não seja MOV;
+   caso seja MOV, o dado virá de "read_register_2_data"
+ * A escrita do dado no registrador selecionado é habilitada caso a instrução não seja de CMP
+   (isso porque a comparação não guarda o resultado, somente altera as flags, mas isso ainda não foi implementado)
+
+Estado: formato_J_parte_1
+ * É selecionado como entrada do PC a saída do registrador "ula_out_reg" caso a instrução seja de salto relativo,
+   ou selecionado o endereço absoluto em "ir_output(12 downto 6)" caso seja salto absoluto
+ * É também habilitada a escrita no PC
+
+Estado: formato_J_parte_2
+ * Nesse estado, nada é feito ou escrito, somente se espera um ciclo, para que a ROM leia o
+   conteúdo do endereço apontado por PC, que foi alterado na mudança do ciclo passado para o atual

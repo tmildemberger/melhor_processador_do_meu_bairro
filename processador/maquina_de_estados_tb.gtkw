@@ -1,30 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed May 04 02:09:41 2022
+[*] Mon May 16 14:56:37 2022
 [*]
 [dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\maquina_de_estados_tb.ghw"
-[dumpfile_mtime] "Wed May 04 02:07:42 2022"
-[dumpfile_size] 784
+[dumpfile_mtime] "Mon May 16 14:52:49 2022"
+[dumpfile_size] 778
 [savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\maquina_de_estados_tb.gtkw"
 [timestart] 0
-[size] 1000 600
-[pos] -1 -1
-*-29.202766 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1366 705
+[pos] -87 -87
+*-27.597229 500000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.maquina_de_estados_tb.
 [sst_width] 211
-[signals_width] 118
+[signals_width] 308
 [sst_expanded] 1
-[sst_vpaned_height] 154
-@29
+[sst_vpaned_height] 191
+@28
 [color] 5
 top.maquina_de_estados_tb.reset
-@28
 [color] 3
 top.maquina_de_estados_tb.clock
 [color] 1
 top.maquina_de_estados_tb.finished
 [color] 6
 top.maquina_de_estados_tb.estado
+@29
+[color] 2
+#{top.maquina_de_estados_tb.instrucao[17:0]} top.maquina_de_estados_tb.instrucao[17] top.maquina_de_estados_tb.instrucao[16] top.maquina_de_estados_tb.instrucao[15] top.maquina_de_estados_tb.instrucao[14] top.maquina_de_estados_tb.instrucao[13] top.maquina_de_estados_tb.instrucao[12] top.maquina_de_estados_tb.instrucao[11] top.maquina_de_estados_tb.instrucao[10] top.maquina_de_estados_tb.instrucao[9] top.maquina_de_estados_tb.instrucao[8] top.maquina_de_estados_tb.instrucao[7] top.maquina_de_estados_tb.instrucao[6] top.maquina_de_estados_tb.instrucao[5] top.maquina_de_estados_tb.instrucao[4] top.maquina_de_estados_tb.instrucao[3] top.maquina_de_estados_tb.instrucao[2] top.maquina_de_estados_tb.instrucao[1] top.maquina_de_estados_tb.instrucao[0]
 [pattern_trace] 1
 [pattern_trace] 0

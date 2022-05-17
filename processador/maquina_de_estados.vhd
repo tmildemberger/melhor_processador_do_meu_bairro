@@ -2,21 +2,53 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.estados_package.all;
+
 entity maquina_de_estados is
 	port( 	clock, reset		: in std_logic;
-			estado				: out std_logic
+			instrucao			: in unsigned(17 downto 0);
+			estado				: out tipo_estado
 	);
 end entity;
 
 architecture a_maquina_de_estados of maquina_de_estados is
-	signal estado_interno : std_logic := '0';
+	signal estado_interno : tipo_estado := instruction_fetch;
 begin
 	process(clock, reset)
 	begin
 		if reset = '1' then
-			estado_interno <= '0';
+			estado_interno <= instruction_fetch;
 		elsif rising_edge(clock) then
-			estado_interno <= not estado_interno;
+			case estado_interno is
+				when instruction_fetch =>
+					estado_interno <= instruction_decode;
+				when instruction_decode =>
+					if instrucao(17 downto 16)="11" then
+						estado_interno <= formato_X;
+					elsif instrucao(17)='0' then
+						estado_interno <= formato_I_parte_1;
+					elsif instrucao(17 downto 14)="1011" then
+						estado_interno <= formato_R_parte_1;
+					elsif instrucao(17 downto 14)="1010" then
+						estado_interno <= formato_J_parte_1;
+					end if;
+				when formato_X =>
+					estado_interno <= instruction_fetch;
+				when formato_I_parte_1 =>
+					estado_interno <= formato_I_parte_2;
+				when formato_I_parte_2 =>
+					estado_interno <= instruction_fetch;
+				when formato_R_parte_1 =>
+					estado_interno <= formato_R_parte_2;
+				when formato_R_parte_2 =>
+					estado_interno <= instruction_fetch;
+				when formato_J_parte_1 =>
+					estado_interno <= formato_J_parte_2;
+				when formato_J_parte_2 =>
+					estado_interno <= instruction_fetch;
+				when others =>
+					null;
+			end case;
 		end if;
 	end process;
 	

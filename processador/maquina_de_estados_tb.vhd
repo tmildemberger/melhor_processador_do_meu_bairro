@@ -2,23 +2,29 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.estados_package.all;
+
 entity maquina_de_estados_tb is
 end entity;
 
 architecture a_maquina_de_estados_tb of maquina_de_estados_tb is
 	component maquina_de_estados
 		port( 	clock, reset		: in std_logic;
-				estado				: out std_logic
+				instrucao			: in unsigned(17 downto 0);
+				estado				: out tipo_estado
 		);
 	end component;
-	signal clock, reset, estado			: std_logic				:= '0';
+	signal clock, reset					: std_logic				:= '0';
+	signal instrucao					: unsigned(17 downto 0)	:= (others => '0');
+	signal estado						: tipo_estado 			:= instruction_fetch;
 	signal finished						: std_logic				:= '0';
 	constant period_time				: time					:= 100 ns;
 begin
 	uut: maquina_de_estados port map( 	clock			=> clock,
 										reset			=> reset,
+										instrucao		=> instrucao,
 										estado			=> estado);
-	
+
 	reset_global: process
 	begin
 		reset <= '1';
@@ -26,7 +32,7 @@ begin
 		reset <= '0';
 		wait;
 	end process reset_global;
-	
+
 	clock_process: process
 	begin
 		while finished /= '1' loop
@@ -37,13 +43,24 @@ begin
 		end loop;
 		wait;
 	end process clock_process;
-	
+
 	process
 	begin
-													-- testa reset
+												-- testa reset
 		wait for period_time*2;
-		wait for period_time*16;					-- testa algumas mudanças de estado
-		finished <= '1';							-- acaba
+		instrucao <= "110011010101111001";
+		wait for period_time*3;					-- testa trocas de estado para instrução do formato X (3 ciclos de clock)
+		
+		instrucao <= "101011111111100000";
+		wait for period_time*4;					-- testa trocas de estado para instrução do formato J (4 ciclos de clock)
+		
+		instrucao <= "000000010101000100";
+		wait for period_time*4;					-- testa trocas de estado para instrução do formato I (4 ciclos de clock)
+		
+		instrucao <= "101100010000110011";
+		wait for period_time*4;					-- testa trocas de estado para instrução do formato R (4 ciclos de clock)
+		
+		finished <= '1';						-- acaba
 		wait;
 	end process;
 end architecture;

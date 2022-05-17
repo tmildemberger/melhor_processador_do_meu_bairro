@@ -1,0 +1,41 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon May 16 18:22:52 2022
+[*]
+[dumpfile] "D:\Programming\melhor_processador_do_meu_bairro\processador\unidade_de_controle_tb.ghw"
+[dumpfile_mtime] "Mon May 16 18:14:28 2022"
+[dumpfile_size] 1859
+[savefile] "D:\Programming\melhor_processador_do_meu_bairro\processador\unidade_de_controle_tb.gtkw"
+[timestart] 1242000000
+[size] 1000 600
+[pos] 313 41
+*-28.499390 1693000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.unidade_de_controle_tb.
+[sst_width] 43
+[signals_width] 457
+[sst_expanded] 0
+[sst_vpaned_height] 154
+@200
+-Entradas:
+@420
+top.unidade_de_controle_tb.estado
+@22
+#{top.unidade_de_controle_tb.instrucao[17:0]} top.unidade_de_controle_tb.instrucao[17] top.unidade_de_controle_tb.instrucao[16] top.unidade_de_controle_tb.instrucao[15] top.unidade_de_controle_tb.instrucao[14] top.unidade_de_controle_tb.instrucao[13] top.unidade_de_controle_tb.instrucao[12] top.unidade_de_controle_tb.instrucao[11] top.unidade_de_controle_tb.instrucao[10] top.unidade_de_controle_tb.instrucao[9] top.unidade_de_controle_tb.instrucao[8] top.unidade_de_controle_tb.instrucao[7] top.unidade_de_controle_tb.instrucao[6] top.unidade_de_controle_tb.instrucao[5] top.unidade_de_controle_tb.instrucao[4] top.unidade_de_controle_tb.instrucao[3] top.unidade_de_controle_tb.instrucao[2] top.unidade_de_controle_tb.instrucao[1] top.unidade_de_controle_tb.instrucao[0]
+@201
+-Saídas:
+@28
+#{top.unidade_de_controle_tb.ula_1_selection[1:0]} top.unidade_de_controle_tb.ula_1_selection[1] top.unidade_de_controle_tb.ula_1_selection[0]
+top.unidade_de_controle_tb.uut.ula_2_selection
+top.unidade_de_controle_tb.uut.pc_write_enable
+top.unidade_de_controle_tb.uut.ir_write_enable
+#{top.unidade_de_controle_tb.immediate_selection[1:0]} top.unidade_de_controle_tb.immediate_selection[1] top.unidade_de_controle_tb.immediate_selection[0]
+top.unidade_de_controle_tb.uut.banco_regs_write_register_selection
+#{top.unidade_de_controle_tb.banco_regs_write_data_selection[1:0]} top.unidade_de_controle_tb.banco_regs_write_data_selection[1] top.unidade_de_controle_tb.banco_regs_write_data_selection[0]
+top.unidade_de_controle_tb.uut.banco_regs_write_enable
+top.unidade_de_controle_tb.uut.ula_operation_control_selection
+#{top.unidade_de_controle_tb.ula_operation_control[2:0]} top.unidade_de_controle_tb.ula_operation_control[2] top.unidade_de_controle_tb.ula_operation_control[1] top.unidade_de_controle_tb.ula_operation_control[0]
+top.unidade_de_controle_tb.uut.ula_out_reg_write_enable
+#{top.unidade_de_controle_tb.pc_input_selection[1:0]} top.unidade_de_controle_tb.pc_input_selection[1] top.unidade_de_controle_tb.pc_input_selection[0]
+[pattern_trace] 1
+[pattern_trace] 0
