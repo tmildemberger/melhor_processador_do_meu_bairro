@@ -11,6 +11,9 @@ PRE_INPUTS := estados_package
 
 .DELETE_ON_ERROR:
 
+.PHONY: sim-top-level
+sim-top-level: sim-processador
+
 .PHONY: all
 all: $(INPUTS:%=%_tb.ghw)
 
