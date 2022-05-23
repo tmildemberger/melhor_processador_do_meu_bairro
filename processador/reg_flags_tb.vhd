@@ -1,0 +1,63 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity reg_flags_tb is
+end entity;
+
+architecture a_reg_flags_tb of reg_flags_tb is
+	component reg_flags
+		port(	clock 			: in std_logic;
+				reset 			: in std_logic;
+				write_enable	: in std_logic;
+				data_in 		: in unsigned(3 downto 0);
+				data_out 		: out unsigned(3 downto 0)
+		);
+	end component;
+	signal clock, reset, write_enable	: std_logic				:= '0';
+	signal data_in, data_out			: unsigned(3 downto 0)	:= (others => '0');
+	signal finished						: std_logic				:= '0';
+	constant period_time				: time					:= 100 ns;
+begin
+	uut: reg_flags port map( 	clock			=> clock,
+								reset			=> reset,
+								write_enable	=> write_enable,
+								data_in			=> data_in,
+								data_out		=> data_out);
+
+	reset_global: process
+	begin
+		reset <= '1';
+		wait for period_time*2;
+		reset <= '0';
+		wait;
+	end process reset_global;
+	
+	clock_process: process
+	begin
+		while finished /= '1' loop
+			clock <= '0';
+			wait for period_time/2;
+			clock <= '1';
+			wait for period_time/2;
+		end loop;
+		wait;
+	end process clock_process;
+	
+	process
+	begin
+													-- testa reset
+		wait for period_time*2;
+		write_enable <= '0';
+		data_in <= "1010";							-- testa entrada aleatória no data_in sem write_enable
+		wait for period_time*2;
+		write_enable <= '1';
+		data_in <= "0011";							-- testa escrita
+		wait for period_time*2;
+		write_enable <= '0';
+		data_in <= "1110";							-- testa se a saída se mantém
+		wait for period_time*2;
+		finished <= '1';							-- acaba
+		wait;
+	end process;
+end architecture;

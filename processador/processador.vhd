@@ -24,7 +24,7 @@ architecture a_processador of processador is
 				data_out 		: out unsigned(6 downto 0)
 		);
 	end component;
-	component rom
+	component rom3
 		port( 	clock				: in std_logic;
 				endereco			: in unsigned(6 downto 0);
 				dado				: out unsigned(17 downto 0)
@@ -41,6 +41,7 @@ architecture a_processador of processador is
 	component maquina_de_estados
 		port( 	clock, reset		: in std_logic;
 				instrucao			: in unsigned(17 downto 0);
+				condicao_ok			: in std_logic;
 				estado				: out tipo_estado
 		);
 	end component;
@@ -59,7 +60,8 @@ architecture a_processador of processador is
 				ula_operation_control_selection			: out std_logic;
 				ula_operation_control					: out unsigned(2 downto 0);
 				ula_out_reg_write_enable				: out std_logic;
-				pc_input_selection						: out unsigned(1 downto 0)
+				pc_input_selection						: out unsigned(1 downto 0);
+				flags_write_enable						: out std_logic
 		);
 	end component;
 	component banco_regs
@@ -93,6 +95,15 @@ architecture a_processador of processador is
 				data_out 		: out unsigned(15 downto 0)
 		);
 	end component;
+
+	component reg_flags
+		port(	clock 			: in std_logic;
+				reset 			: in std_logic;
+				write_enable	: in std_logic;
+				data_in 		: in unsigned(3 downto 0);
+				data_out 		: out unsigned(3 downto 0)
+		);
+	end component;
 	
 	signal pc_input								: unsigned(6 downto 0)	:= (others => '0');
 	signal pc_output							: unsigned(6 downto 0)	:= (others => '0');
@@ -106,6 +117,7 @@ architecture a_processador of processador is
 	signal ir_write_enable						: std_logic				:= '0';
 	
 	signal estado								: tipo_estado			:= instruction_fetch;
+	signal condicao_ok							: std_logic				:= '0';
 	
 	signal ula_1_selection						: unsigned(1 downto 0)	:= (others => '0');
 	signal ula_2_selection						: std_logic				:= '0';
@@ -133,7 +145,10 @@ architecture a_processador of processador is
 	
 	signal ula_out_reg_write_enable				: std_logic				:= '0';
 	signal ula_out_reg_output					: unsigned(15 downto 0)	:= (others => '0');
-	
+
+	signal flags_write_enable					: std_logic				:= '0';
+	signal flags_output							: unsigned(3 downto 0)	:= (others => '0');
+	signal ula_flags							: unsigned(3 downto 0)	:= (others => '0');
 	
 	signal immediate_output						: unsigned(15 downto 0)	:= (others => '0');
 	
@@ -144,7 +159,7 @@ begin
 									data_in		 => pc_input,
 									data_out	 => pc_output);
 
-	memoria_rom : rom port map(	clock 	 => clock,
+	memoria_rom : rom3 port map(	clock 	 => clock,
 								endereco => rom_endereco,
 								dado	 => rom_dado);
 
@@ -157,7 +172,8 @@ begin
 	maq_estados : maquina_de_estados port map(	clock		=> clock,
 												reset		=> reset,
 												instrucao	=> ir_output,
-												estado  	=> estado);
+												estado  	=> estado,
+												condicao_ok => condicao_ok);
 
 	uc : unidade_de_controle port map(	clock								=> clock,
 										reset								=> reset,
@@ -174,7 +190,8 @@ begin
 										ula_operation_control_selection		=> ula_operation_control_selection,
 										ula_operation_control				=> ula_operation_control,
 										ula_out_reg_write_enable			=> ula_out_reg_write_enable,
-										pc_input_selection					=> pc_input_selection);
+										pc_input_selection					=> pc_input_selection,
+										flags_write_enable					=> flags_write_enable);
 
 	banco_de_regs : banco_regs port map (	clock 				=> clock,
 											reset				=> reset,
@@ -200,6 +217,12 @@ begin
 										write_enable => ula_out_reg_write_enable,
 										data_in		 => ula_output,
 										data_out	 => ula_out_reg_output);
+
+	flags_reg : reg_flags 	port map(	clock		 => clock,
+										reset		 => reset,
+										write_enable => flags_write_enable,
+										data_in		 => ula_flags,
+										data_out	 => flags_output);
 
 
 	immediate_output	<=	resize("1", 16) when immediate_selection="00" else
@@ -244,6 +267,25 @@ begin
 					ir_output(12 downto 6) when pc_input_selection="11" else
 					ula_output(6 downto 0);
 
+	ula_flags 	<= 	ula_zero_flag & ula_carry_flag & ula_negative_flag & ula_overflow_flag;
+
+	condicao_ok <=	'1' when ir_output(3 downto 0)="0000" else
+					'0' when ir_output(3 downto 0)="0001" else
+					flags_output(3) when ir_output(3 downto 0)="0010" else
+					not flags_output(3) when ir_output(3 downto 0)="0011" else
+					flags_output(0) when ir_output(3 downto 0)="0100" else
+					not flags_output(0) when ir_output(3 downto 0)="0101" else
+					flags_output(1) when ir_output(3 downto 0)="0110" else
+					not flags_output(1) when ir_output(3 downto 0)="0111" else
+					flags_output(2) when ir_output(3 downto 0)="1000" else
+					not flags_output(2) when ir_output(3 downto 0)="1001" else
+					not flags_output(3) and not (flags_output(0) xor flags_output(1)) when ir_output(3 downto 0)="1010" else
+					flags_output(3) or (flags_output(0) xor flags_output(1)) when ir_output(3 downto 0)="1011" else
+					flags_output(0) xor flags_output(1) when ir_output(3 downto 0)="1100" else
+					not (flags_output(0) xor flags_output(1))  when ir_output(3 downto 0)="1101" else
+					not flags_output(2) and not flags_output(3) when ir_output(3 downto 0)="1110" else
+					flags_output(2) or flags_output(3) when ir_output(3 downto 0)="1111" else
+					'0';
 
 	rom_endereco	<=	pc_output;
 	ir_input		<=	rom_dado;

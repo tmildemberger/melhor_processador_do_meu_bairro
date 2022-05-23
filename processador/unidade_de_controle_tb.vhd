@@ -23,7 +23,8 @@ architecture a_unidade_de_controle_tb of unidade_de_controle_tb is
 				ula_operation_control_selection			: out std_logic;
 				ula_operation_control					: out unsigned(2 downto 0);
 				ula_out_reg_write_enable				: out std_logic;
-				pc_input_selection						: out unsigned(1 downto 0)
+				pc_input_selection						: out unsigned(1 downto 0);
+				flags_write_enable						: out std_logic
 		);
 	end component;
 	signal clock, reset							: std_logic				:= '0';
@@ -44,6 +45,7 @@ architecture a_unidade_de_controle_tb of unidade_de_controle_tb is
 	signal ula_operation_control				: unsigned(2 downto 0)	:= (others => '0');
 	signal ula_out_reg_write_enable				: std_logic				:= '0';
 	signal pc_input_selection					: unsigned(1 downto 0)	:= (others => '0');
+	signal flags_write_enable					: std_logic				:= '0';
 	
 	signal finished								: std_logic				:= '0';
 	constant period_time						: time					:= 100 ns;
@@ -63,7 +65,8 @@ begin
 										ula_operation_control_selection		=> ula_operation_control_selection,
 										ula_operation_control				=> ula_operation_control,
 										ula_out_reg_write_enable			=> ula_out_reg_write_enable,
-										pc_input_selection					=> pc_input_selection);
+										pc_input_selection					=> pc_input_selection,
+										flags_write_enable					=> flags_write_enable);
 	
 	reset_global: process
 	begin

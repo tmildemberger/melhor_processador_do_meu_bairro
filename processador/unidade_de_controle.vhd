@@ -19,7 +19,8 @@ entity unidade_de_controle is
 			ula_operation_control_selection			: out std_logic;
 			ula_operation_control					: out unsigned(2 downto 0);
 			ula_out_reg_write_enable				: out std_logic;
-			pc_input_selection						: out unsigned(1 downto 0)
+			pc_input_selection						: out unsigned(1 downto 0);
+			flags_write_enable						: out std_logic
 	);
 end entity;
 
@@ -83,4 +84,8 @@ begin
 	pc_input_selection						<=	"00" when estado=instruction_fetch else
 												(not instrucao(5)) & '1' when estado=formato_J_parte_1 else
 												"00";
+
+	flags_write_enable						<=	(not (instrucao(11) and instrucao(9))) when estado=formato_I_parte_1 and instrucao(17 downto 0)/="000000000000000000" else
+												(not (instrucao(11) and instrucao(9))) when estado=formato_R_parte_1 and instrucao(17 downto 0)/="000000000000000000" else
+												'0';
 end architecture;

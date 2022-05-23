@@ -61,7 +61,7 @@ begin
 	begin
 													-- testa reset
 		wait for period_time*2;
-		wait for period_time*160;					-- testa o funcionamento por alguns ciclos
+		wait for period_time*1000;					-- testa o funcionamento por alguns ciclos
 		finished <= '1';							-- acaba
 		wait;
 	end process;

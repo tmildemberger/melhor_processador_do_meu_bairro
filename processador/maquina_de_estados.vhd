@@ -7,6 +7,7 @@ use work.estados_package.all;
 entity maquina_de_estados is
 	port( 	clock, reset		: in std_logic;
 			instrucao			: in unsigned(17 downto 0);
+			condicao_ok			: in std_logic;
 			estado				: out tipo_estado
 	);
 end entity;
@@ -29,8 +30,10 @@ begin
 						estado_interno <= formato_I_parte_1;
 					elsif instrucao(17 downto 14)="1011" then
 						estado_interno <= formato_R_parte_1;
-					elsif instrucao(17 downto 14)="1010" then
+					elsif instrucao(17 downto 14)="1010" and condicao_ok='1' then
 						estado_interno <= formato_J_parte_1;
+					else
+						estado_interno <= instruction_fetch;
 					end if;
 				when formato_X =>
 					estado_interno <= instruction_fetch;
