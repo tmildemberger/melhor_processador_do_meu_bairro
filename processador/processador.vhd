@@ -104,6 +104,16 @@ architecture a_processador of processador is
 				data_out 		: out unsigned(3 downto 0)
 		);
 	end component;
+
+	component ram
+		port(
+			clock : in std_logic;
+			endereco : in unsigned(6 downto 0);
+			write_enable : in std_logic;
+			dado_in : in unsigned(15 downto 0);
+			dado_out : out unsigned(15 downto 0)
+		);
+	end component;
 	
 	signal pc_input								: unsigned(6 downto 0)	:= (others => '0');
 	signal pc_output							: unsigned(6 downto 0)	:= (others => '0');
@@ -151,6 +161,11 @@ architecture a_processador of processador is
 	signal ula_flags							: unsigned(3 downto 0)	:= (others => '0');
 	
 	signal immediate_output						: unsigned(15 downto 0)	:= (others => '0');
+
+	signal ram_endereco 						: unsigned(6 downto 0);
+	signal ram_write_enable 					: std_logic;
+	signal ram_dado_in 							: unsigned(15 downto 0);
+	signal ram_dado_out 						: unsigned(15 downto 0);
 	
 begin
 	pc : program_counter port map(	clock		 => clock,
@@ -224,6 +239,11 @@ begin
 										data_in		 => ula_flags,
 										data_out	 => flags_output);
 
+	memoria_ram : ram 		port map( 	clock		 => clock,
+										write_enable => ram_write_enable,
+										endereco	 => ram_endereco,
+										dado_in		 => ram_dado_in,
+										dado_out	 => ram_dado_out);
 
 	immediate_output	<=	resize("1", 16) when immediate_selection="00" else
 							unsigned(resize(signed(ir_output(13 downto 6)), 16)) when immediate_selection="01" else
@@ -240,7 +260,7 @@ begin
 	banco_regs_write_data	<=	immediate_output when banco_regs_write_data_selection="00" else
 								read_register_2_data when banco_regs_write_data_selection="01" else
 								ula_out_reg_output when banco_regs_write_data_selection="10" else
-								resize("0", 16) when banco_regs_write_data_selection="11" else
+								ram_dado_out when banco_regs_write_data_selection="11" else
 								immediate_output;
 
 
@@ -263,7 +283,7 @@ begin
 
 	pc_input	<=	ula_output(6 downto 0) when pc_input_selection="00" else
 					ula_out_reg_output(6 downto 0) when pc_input_selection="01" else
-					resize("0", 16) when pc_input_selection="10" else
+					ram_dado_out(6 downto 0) when pc_input_selection="10" else
 					ir_output(12 downto 6) when pc_input_selection="11" else
 					ula_output(6 downto 0);
 
@@ -287,9 +307,11 @@ begin
 					flags_output(2) or flags_output(3) when ir_output(3 downto 0)="1111" else
 					'0';
 
+	ram_dado_in		<=  "000000000" & pc_output when ram_data_in_selection='0' else
+						read_register_1_data when ram_data_in_selection='1';
+	
 	rom_endereco	<=	pc_output;
 	ir_input		<=	rom_dado;
-
 
 	estado_atual				<= estado;
 	program_counter_out			<= pc_output;
