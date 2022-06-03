@@ -28,10 +28,14 @@ begin
 						estado_interno <= formato_X;
 					elsif instrucao(17)='0' then
 						estado_interno <= formato_I_parte_1;
-					elsif instrucao(17 downto 14)="1011" then
+					elsif instrucao(17 downto 13)="10110" then
 						estado_interno <= formato_R_parte_1;
 					elsif instrucao(17 downto 14)="1010" and condicao_ok='1' then
 						estado_interno <= formato_J_parte_1;
+					elsif instrucao(17 downto 15)="100" then
+						estado_interno <= formato_M_parte_1;
+					elsif instrucao(17 downto 13)="10111" then
+						estado_interno <= formato_U_parte_1;
 					else
 						estado_interno <= instruction_fetch;
 					end if;
@@ -48,6 +52,14 @@ begin
 				when formato_J_parte_1 =>
 					estado_interno <= formato_J_parte_2;
 				when formato_J_parte_2 =>
+					estado_interno <= instruction_fetch;
+				when formato_M_parte_1 =>
+					estado_interno <= formato_M_parte_2;
+				when formato_M_parte_2 =>
+					estado_interno <= instruction_fetch;
+				when formato_U_parte_1 =>
+					estado_interno <= formato_U_parte_2;
+				when formato_U_parte_2 =>
 					estado_interno <= instruction_fetch;
 				when others =>
 					null;

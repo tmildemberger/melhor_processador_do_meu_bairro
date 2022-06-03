@@ -24,7 +24,7 @@ architecture a_processador of processador is
 				data_out 		: out unsigned(6 downto 0)
 		);
 	end component;
-	component rom3
+	component rom_novos_formatos
 		port( 	clock				: in std_logic;
 				endereco			: in unsigned(6 downto 0);
 				dado				: out unsigned(17 downto 0)
@@ -61,7 +61,12 @@ architecture a_processador of processador is
 				ula_operation_control					: out unsigned(2 downto 0);
 				ula_out_reg_write_enable				: out std_logic;
 				pc_input_selection						: out unsigned(1 downto 0);
-				flags_write_enable						: out std_logic
+				flags_write_enable						: out std_logic;
+				sp_write_enable							: out std_logic;
+				sp_input_selection						: out std_logic;
+				ram_endereco_selection					: out std_logic;
+				ram_data_in_selection					: out std_logic;
+				ram_write_enable						: out std_logic
 		);
 	end component;
 	component banco_regs
@@ -114,6 +119,15 @@ architecture a_processador of processador is
 			dado_out : out unsigned(15 downto 0)
 		);
 	end component;
+
+	component stack_pointer
+		port(	clock 			: in std_logic;
+				reset 			: in std_logic;
+				write_enable	: in std_logic;
+				data_in 		: in unsigned(6 downto 0);
+				data_out 		: out unsigned(6 downto 0)
+		);
+	end component;
 	
 	signal pc_input								: unsigned(6 downto 0)	:= (others => '0');
 	signal pc_output							: unsigned(6 downto 0)	:= (others => '0');
@@ -137,6 +151,9 @@ architecture a_processador of processador is
 	signal ula_operation_control_selection		: std_logic				:= '0';
 	signal ula_operation_control				: unsigned(2 downto 0)	:= (others => '0');
 	signal pc_input_selection					: unsigned(1 downto 0)	:= (others => '0');
+	signal ram_data_in_selection				: std_logic;
+	signal ram_endereco_selection				: std_logic;
+	signal sp_input_selection					: std_logic;
 	
 	signal banco_regs_write_enable				: std_logic				:= '0';
 	signal banco_regs_write_register			: unsigned(2 downto 0)	:= (others => '0');
@@ -166,6 +183,10 @@ architecture a_processador of processador is
 	signal ram_write_enable 					: std_logic;
 	signal ram_dado_in 							: unsigned(15 downto 0);
 	signal ram_dado_out 						: unsigned(15 downto 0);
+
+	signal sp_input								: unsigned(6 downto 0)	:= (others => '0');
+	signal sp_output							: unsigned(6 downto 0)	:= (others => '0');
+	signal sp_write_enable						: std_logic				:= '0'; 
 	
 begin
 	pc : program_counter port map(	clock		 => clock,
@@ -174,9 +195,9 @@ begin
 									data_in		 => pc_input,
 									data_out	 => pc_output);
 
-	memoria_rom : rom3 port map(	clock 	 => clock,
-								endereco => rom_endereco,
-								dado	 => rom_dado);
+	memoria_rom : rom_novos_formatos port map(	clock 	 => clock,
+												endereco => rom_endereco,
+												dado	 => rom_dado);
 
 	ir : instruction_register port map(	clock		 => clock,
 										reset		 => reset,
@@ -206,7 +227,12 @@ begin
 										ula_operation_control				=> ula_operation_control,
 										ula_out_reg_write_enable			=> ula_out_reg_write_enable,
 										pc_input_selection					=> pc_input_selection,
-										flags_write_enable					=> flags_write_enable);
+										flags_write_enable					=> flags_write_enable,
+										sp_input_selection					=> sp_input_selection,
+										sp_write_enable						=> sp_write_enable,
+										ram_data_in_selection				=> ram_data_in_selection,
+										ram_endereco_selection				=> ram_endereco_selection,
+										ram_write_enable					=> ram_write_enable);
 
 	banco_de_regs : banco_regs port map (	clock 				=> clock,
 											reset				=> reset,
@@ -245,6 +271,12 @@ begin
 										dado_in		 => ram_dado_in,
 										dado_out	 => ram_dado_out);
 
+	sp: stack_pointer		port map(	clock		 => clock,
+										write_enable => sp_write_enable,
+										reset 		 => reset,
+										data_in		 => sp_input,
+										data_out	 => sp_output);
+
 	immediate_output	<=	resize("1", 16) when immediate_selection="00" else
 							unsigned(resize(signed(ir_output(13 downto 6)), 16)) when immediate_selection="01" else
 							unsigned(resize(signed(ir_output(16 downto 12) & ir_output(7 downto 3)), 16)) when immediate_selection="10" else
@@ -267,7 +299,7 @@ begin
 	ula_1_input	<=	"000000000" & pc_output when ula_1_selection="00" else
 					read_register_1_data when ula_1_selection="01" else
 					read_register_2_data when ula_1_selection="10" else
-					resize("0", 16) when ula_1_selection="11" else
+					"000000000" & sp_output when ula_1_selection="11" else
 					"000000000" & pc_output;
 
 
@@ -309,6 +341,15 @@ begin
 
 	ram_dado_in		<=  "000000000" & pc_output when ram_data_in_selection='0' else
 						read_register_1_data when ram_data_in_selection='1';
+
+	ram_endereco	<= 	sp_output when ram_endereco_selection='0' else
+						ula_out_reg_output(6 downto 0) when ram_endereco_selection='1';
+
+	ram_dado_in		<= 	"000000000" & pc_output when ram_data_in_selection='0' else
+						read_register_1_data when ram_data_in_selection='1';
+
+	sp_input		<= 	ula_out_reg_output(6 downto 0) when sp_input_selection='0' else
+						ula_output(6 downto 0) when sp_input_selection='1';
 	
 	rom_endereco	<=	pc_output;
 	ir_input		<=	rom_dado;

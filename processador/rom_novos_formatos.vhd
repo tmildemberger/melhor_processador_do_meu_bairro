@@ -11,12 +11,12 @@ end entity;
 
 architecture a_rom_novos_formatos of rom_novos_formatos is
 	type mem is array(0 to 127) of unsigned(17 downto 0);
-	constant conteudo_rom : mem := (-- END. - INSTRUÇÃO
+	constant conteudo_rom : mem := (-- END. - INSTRUCAO
 		 0 => "000000000000000000", -- 0x00 - NOP
 		 1 => "000000000000000000", -- 0x01 - NOP
 		 2 => "000000000000000000", -- 0x02 - NOP
 		 3 => "110000000000100010", -- 0x03 - MOV  R6, #0x022
-		 4 => "000001101010010111", -- 0x04 - MOV  R7, #0x032
+		 4 => "000000101000011111", -- 0x04 - MOV  R7, #0x003
 		 5 => "000111101010000001", -- 0x05 - MOV  R1, #0x0F0
 		 6 => "000000010101000001", -- 0x06 - SHL  R1, #0x008
 		 7 => "000111001110000001", -- 0x07 - OR   R1, #0x0F0
@@ -51,7 +51,7 @@ architecture a_rom_novos_formatos of rom_novos_formatos is
 		36 => "101100101000111010", -- 0x24 - MOV  R2, R7
 		37 => "101110001100000010", -- 0x25 - PUSH R2
 		38 => "101110001100000100", -- 0x26 - PUSH R4
-		39 => "101110100010000010", -- 0x27 - MOV  R2, SP
+		39 => "101110110010000010", -- 0x27 - MOV  R2, SP
 		40 => "000000000000001010", -- 0x28 - ADD  R2, #0x001
 		41 => "101110100101000010", -- 0x29 - MOV  SP, R2
 		42 => "101110000010000010", -- 0x2A - POP  R2
@@ -59,7 +59,7 @@ architecture a_rom_novos_formatos of rom_novos_formatos is
 		44 => "101000101110010010", -- 0x2C - CALLA EQ, #0x2E
 		45 => "101000000001100000", -- 0x2D - JMPR UC, #+1
 		46 => "101111000000000000", -- 0x2E - RET
-		47 => "100000010100110101", -- 0x2F - MOV  R5, [R6 + #0x14]
+		47 => "100000100011000101", -- 0x2F - MOV  R5, [R0 + #0x23]
 		48 => "101100010100110101", -- 0x30 - SHL  R5, R6
 		49 => "101011111111100101", -- 0x31 - JMPR NV=0x5, #-1
 		50 => "111100101011111110", -- 0x32 - MOV  R7, #0xCAFE
