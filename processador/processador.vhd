@@ -24,7 +24,7 @@ architecture a_processador of processador is
 				data_out 		: out unsigned(6 downto 0)
 		);
 	end component;
-	component rom_novos_formatos
+	component rom_heap_sort
 		port( 	clock				: in std_logic;
 				endereco			: in unsigned(6 downto 0);
 				dado				: out unsigned(17 downto 0)
@@ -195,9 +195,9 @@ begin
 									data_in		 => pc_input,
 									data_out	 => pc_output);
 
-	memoria_rom : rom_novos_formatos port map(	clock 	 => clock,
-												endereco => rom_endereco,
-												dado	 => rom_dado);
+	memoria_rom : rom_heap_sort port map(	clock 	 => clock,
+											endereco => rom_endereco,
+											dado	 => rom_dado);
 
 	ir : instruction_register port map(	clock		 => clock,
 										reset		 => reset,
