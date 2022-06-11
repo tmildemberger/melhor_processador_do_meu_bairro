@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Fri Jun  3 19:35:37 2022
+[*] Fri Jun 10 19:10:10 2022
 [*]
 [dumpfile] "/home/gustavobchierici/Documentos/Disciplinas/ArqComp/VHDL/melhor_processador_do_meu_bairro/processador/processador_tb.ghw"
-[dumpfile_mtime] "Fri Jun  3 19:29:18 2022"
-[dumpfile_size] 257956
+[dumpfile_mtime] "Fri Jun 10 19:05:56 2022"
+[dumpfile_size] 6762319
 [savefile] "/home/gustavobchierici/Documentos/Disciplinas/ArqComp/VHDL/melhor_processador_do_meu_bairro/processador/processador_tb.gtkw"
-[timestart] 32776000000
+[timestart] 421363000000
 [size] 1920 1015
 [pos] -1 -1
-*-28.203875 33310000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-28.203875 422035000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.processador_tb.
 [treeopen] top.processador_tb.uut.
@@ -101,7 +101,6 @@ top.processador_tb.uut.pc_write_enable
 #{top.processador_tb.uut.pc_input_selection[1:0]} top.processador_tb.uut.pc_input_selection[1] top.processador_tb.uut.pc_input_selection[0]
 @22
 #{top.processador_tb.uut.memoria_ram.conteudo_ram[127][15:0]} top.processador_tb.uut.memoria_ram.conteudo_ram[127][15] top.processador_tb.uut.memoria_ram.conteudo_ram[127][14] top.processador_tb.uut.memoria_ram.conteudo_ram[127][13] top.processador_tb.uut.memoria_ram.conteudo_ram[127][12] top.processador_tb.uut.memoria_ram.conteudo_ram[127][11] top.processador_tb.uut.memoria_ram.conteudo_ram[127][10] top.processador_tb.uut.memoria_ram.conteudo_ram[127][9] top.processador_tb.uut.memoria_ram.conteudo_ram[127][8] top.processador_tb.uut.memoria_ram.conteudo_ram[127][7] top.processador_tb.uut.memoria_ram.conteudo_ram[127][6] top.processador_tb.uut.memoria_ram.conteudo_ram[127][5] top.processador_tb.uut.memoria_ram.conteudo_ram[127][4] top.processador_tb.uut.memoria_ram.conteudo_ram[127][3] top.processador_tb.uut.memoria_ram.conteudo_ram[127][2] top.processador_tb.uut.memoria_ram.conteudo_ram[127][1] top.processador_tb.uut.memoria_ram.conteudo_ram[127][0]
-@23
 #{top.processador_tb.uut.memoria_ram.conteudo_ram[126][15:0]} top.processador_tb.uut.memoria_ram.conteudo_ram[126][15] top.processador_tb.uut.memoria_ram.conteudo_ram[126][14] top.processador_tb.uut.memoria_ram.conteudo_ram[126][13] top.processador_tb.uut.memoria_ram.conteudo_ram[126][12] top.processador_tb.uut.memoria_ram.conteudo_ram[126][11] top.processador_tb.uut.memoria_ram.conteudo_ram[126][10] top.processador_tb.uut.memoria_ram.conteudo_ram[126][9] top.processador_tb.uut.memoria_ram.conteudo_ram[126][8] top.processador_tb.uut.memoria_ram.conteudo_ram[126][7] top.processador_tb.uut.memoria_ram.conteudo_ram[126][6] top.processador_tb.uut.memoria_ram.conteudo_ram[126][5] top.processador_tb.uut.memoria_ram.conteudo_ram[126][4] top.processador_tb.uut.memoria_ram.conteudo_ram[126][3] top.processador_tb.uut.memoria_ram.conteudo_ram[126][2] top.processador_tb.uut.memoria_ram.conteudo_ram[126][1] top.processador_tb.uut.memoria_ram.conteudo_ram[126][0]
 [pattern_trace] 1
 [pattern_trace] 0

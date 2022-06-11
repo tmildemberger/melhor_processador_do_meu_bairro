@@ -6,7 +6,7 @@ else
 	quiet_fork = ($(1) >/dev/null 2>&1 &)
 endif
 
-INPUTS := ula reg16bits banco_regs ula_com_banco_regs rom maquina_de_estados program_counter proto_uc proto_uc_rom uc_com_jump rom2 instruction_register unidade_de_controle processador reg_flags rom3 rom_novos_formatos stack_pointer ram rom_heap_sort
+INPUTS := ula reg16bits banco_regs ula_com_banco_regs rom maquina_de_estados program_counter proto_uc proto_uc_rom uc_com_jump rom2 instruction_register unidade_de_controle processador reg_flags rom3 rom_novos_formatos stack_pointer ram rom_heap_sort rom_crivo
 PRE_INPUTS := estados_package
 
 .DELETE_ON_ERROR:

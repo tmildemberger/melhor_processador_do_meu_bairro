@@ -11,7 +11,7 @@ end entity;
 
 architecture a_rom_heap_sort of rom_heap_sort is
 	type mem is array(0 to 127) of unsigned(17 downto 0);
-	constant conteudo_rom : mem := (-- END. - INSTRUÇÃO
+	constant conteudo_rom : mem := (-- END. - INSTRUCAO
 		0  => "101001001001010000",	-- 0x00 - CALLA UC, 0x49 - CALLA UC, fill_ram
 		1  => "000000000000000000",	-- 0x01 - NOP
 		2  => "101000001101010000",	-- 0x02 - CALLA UC, 0x0D - CALLA UC, heap_sort
